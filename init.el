@@ -51,8 +51,6 @@
 ;; ウインドウを分割しても行を折り返さない
 (setq truncate-partial-width-windows nil) ; default 50
 
-
-
 ;; "package.el - Emacs JP" http://emacs-jp.github.io/packages/package-management/package-el.html
 (require 'package)
 ;; https いける？
@@ -62,7 +60,7 @@
 ;; MELPAを追加
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.milkbox.net/packages/") t)
-;; MELPA-stableを追加
+;; MARMALADEを追加
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 ;; Orgを追加
@@ -138,7 +136,7 @@
 ;;       "\\(\\( \\|ࢠ\\|ठ\\|ภ\\|༠\\)+\\)"
 (require 'whitespace)
 
-(setq whitespace-style '(face tabs spaces trailing space-before-tab::tab indentation empty space-mark tab-mark))
+(setq whitespace-style '(facetabs spaces trailing space-before-tab::tab indentation empty space-mark tab-mark))
 
 (setq whitespace-display-mappings
       '((space-mark ?\u3000 [?\u25a1])
@@ -152,6 +150,7 @@
 
 ;; 保存前に自動でクリーンアップ
 (setq whitespace-action '(auto-cleanup))
+
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -263,7 +262,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (flycheck-color-mode-line rspec-mode ruby-end ruby-factory projectile-rails helm-etags-plus ctags ctags-update flycheck point-undo company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
+    (company-quickhelp company-irony company-irony-c-headers direx flycheck-color-mode-line projectile-rails helm-etags-plus ctags ctags-update flycheck point-undo company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
 
 ;; yasnippetの設定
 (require 'yasnippet)
@@ -298,39 +297,66 @@
 ;; companyはauto-comleteと同じような自動補完
 (require 'company)
 ;; 全バッファで有効にする
-;; (global-company-mode)
+(global-company-mode)
 ;; デフォルトは0.5，nil
 (setq company-idle-delay 0)
 ;; デフォルトは4
-(setq company-minimum-prefix-length 2)
+(setq company-minimum-prefix-length 1)
 ;; 候補の一番下でさらに下に行こうとすると一番上に戻る
 (setq company-selection-wrap-around t)
 
+;; auto-completeみたいな色にする
+
+(set-face-attribute 'company-tooltip nil
+                    :foreground "black" :background "lightgrey")
+(set-face-attribute 'company-tooltip-common nil
+                    :foreground "black" :background "lightgrey")
+(set-face-attribute 'company-tooltip-common-selection nil
+                    :foreground "white" :background "steelblue")
+(set-face-attribute 'company-tooltip-selection nil
+                    :foreground "black" :background "steelblue")
+(set-face-attribute 'company-preview-common nil
+                    :background nil :foreground "lightgrey" :underline t)
+(set-face-attribute 'company-scrollbar-fg nil
+                    :background "orange")
+(set-face-attribute 'company-scrollbar-bg nil
+                    :background "gray40")
+
+(global-set-key (kbd "C-M-i") 'company-complete)
+
+(company-quickhelp-mode +1)
+
+;; C-n, C-pで補完候補を次/前の候補を選択
+(define-key company-active-map (kbd "C-n") 'company-select-next)
+(define-key company-active-map (kbd "C-p") 'company-select-previous)
+(define-key company-search-map (kbd "C-n") 'company-select-next)
+(define-key company-search-map (kbd "C-p") 'company-select-previous)
+
+;; C-sで絞り込む
+(define-key company-active-map (kbd "C-s") 'company-filter-candidates)
+
+;; TABで候補を設定
+(define-key company-active-map (kbd "C-i") 'company-complete-selection)
+
+;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
+(define-key emacs-lisp-mode-map (kbd "C-M-i") 'company-complete)
+
 ;; インデントするコマンド自作
-;; M-x electric-indent
+;; M-x file-indent
 (defun all-indent ()
   (interactive)
   (save-excursion
     (indent-region (point-min) (point-max))))
 
-(defun electric-indent ()
+(defun file-indent ()
   (interactive)
   (if (use-region-p)
       (indent-region (region-beginning) (region-end))
     (all-indent)))
 
-;; FlycheckとRuby
-(add-hook 'ruby-mode-hook
-          '(lambda ()
-             (setq flycheck-checker 'ruby-rubocop)
-             (flycheck-mode 1)))
-
 ;;  projectile
 (require 'projectile)
 (projectile-global-mode)
-(require 'projectile-rails)
-(add-hook 'projectile-mode-hook 'projectile-rails-on)
-
 
 (setq process-coding-system-alist
       (cons '("gosh" utf-8 . utf-8) process-coding-system-alist))
@@ -354,20 +380,6 @@
 (define-key global-map
   "\C-cG" 'scheme-other-window)
 
-;; PHPに特化したことにしたい
-;; トップディレクトリに
-;; touch .ac-php-conf.json
-;; を事前にしておき，M-x ac-php-remake-tags-all
-;; (require 'cl)
-;; (require 'php-mode)
-;; (add-hook 'php-mode-hook
-;;           '(lambda ()
-;;              (require 'company-php)
-;;              (company-mode t)
-;;              (ac-php-core-eldoc-setup) ;; enable eldoc
-;;              (make-local-variable 'company-backends)
-;;              (add-to-list 'company-backends 'company-ac-php-backend)))
-
 ;; helmの機能を使ったetag機能
 (require 'helm-etags-plus)
 (global-set-key "\M-." 'helm-etags-plus-select)
@@ -378,137 +390,28 @@
 ;;go forward directly
 (global-set-key "\M-/" 'helm-etags-plus-history-go-forward)
 
+;; directly tree
+
+(require 'popwin)
+(setq display-buffer-function 'popwin:display-buffer)
+
+(require 'direx-project)
+(push '(direx:direx-mode :position left :width 50 :dedicated t)
+      popwin:special-display-config)
+(global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root-other-window)
+
 ;;いつでもupdate (create) TAGS
 (autoload 'ctags-update "ctags-update" "update TAGS using ctags" t)
 (global-set-key "\C-cE" 'ctags-update)
 
-;; C++環境構築
-(require 'cc-mode)
-;; c-mode-common-hook は C/C++ の設定
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (setq c-default-style "k&r") ;; カーニハン・リッチースタイル
-            (setq indent-tabs-mode nil)  ;; タブは利用しない
-            (setq c-basic-offset 2)      ;; indent は 2 スペース
-            ))
-;; ヘッダファイルが c++ として認識される
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+;; C/C++関連の設定
+(require 'irony)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(add-to-list 'company-backends 'company-irony) ; backend追加
 
-;; 構文チェック
-;; checker の変更は M-x flycheck-select-checker
-;; helm-flycheck で helm i/f から エラーを選択
+;; flycheck c/c++設定
 (require 'flycheck)
-(add-hook 'c-mode-common-hook 'flycheck-mode)
-(defmacro flycheck-define-clike-checker (name command modes)
-  `(flycheck-define-checker ,(intern (format "%s" name))
-     ,(format "A %s checker using %s" name (car command))
-     :command (,@command source-inplace)
-     :error-patterns
-     ((warning line-start (file-name) ":" line ":" column ": 警告:" (message) line-end)
-      (error line-start (file-name) ":" line ":" column ": エラー:" (message) line-end))
-     :modes ',modes))
-(flycheck-define-clike-checker c-gcc-ja
-                               ("gcc" "-fsyntax-only" "-Wall" "-Wextra")
-                               c-mode)
-(add-to-list 'flycheck-checkers 'c-gcc-ja)
-(flycheck-define-clike-checker c++-g++-ja
-                               ("g++" "-fsyntax-only" "-Wall" "-Wextra" "-std=c++11")
-                               c++-mode)
-(add-to-list 'flycheck-checkers 'c++-g++-ja)
-
-;;リファクタリング
-(require 'srefactor)
-(define-key c-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
-(define-key c++-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
-
-;; C++補完
-(require 'auto-complete)
-(require 'auto-complete-config)
-(ac-config-default)
-(global-auto-complete-mode t)
-(require 'auto-complete-c-headers)
-;; (add-hook 'c++-mode-hook '(setq ac-sources (append ac-sources '(ac-source-c-headers))))
-;; (add-hook 'c-mode-hook '(setq ac-sources (append ac-sources '(ac-source-c-headers))))
-(defun my:ac-c-headers-init ()
-  (require 'auto-complete-c-headers)
-  (add-to-list 'ac-sources 'ac-source-c-headers))
-
-(add-hook 'c++-mode-hook 'my:ac-c-headers-init)
-(add-hook 'c-mode-hook 'my:ac-c-headers-init)
-
-(require 'auto-complete-clang-async)
-
-(defun ac-cc-mode-setup ()
-  (setq ac-clang-complete-executable "clang-complete")
-  (setq ac-sources (append ac-sources '(ac-source-clang-async)))
-  (ac-clang-launch-completion-process))
-
-(defun my-ac-config ()
-  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
-  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
-  (global-auto-complete-mode t))
-
-(my-ac-config)
-
-(require 'function-args)
-(fa-config-default)
-
-(define-key function-args-mode-map (kbd "M-o") nil)
-(define-key c-mode-map (kbd "C-M-:") 'moo-complete)
-(define-key c++-mode-map (kbd "C-M-:") 'moo-complete)
-
-
-
-
-;; ドキュメント表示
-(require 'c-eldoc)
-(add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
-(add-hook 'c++-mode-hook 'c-turn-on-eldoc-mode)
-(setq c-eldoc-buffer-regenerate-time 60)
-
-;; デバッグ
-(require 'realgud)
-
-;; タグ
-(require 'ggtags)
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
-              (ggtags-mode 1))))
-
-;; use helm
-(setq ggtags-completing-read-function nil)
-
-;; use eldoc
-(setq-local eldoc-documentation-function #'ggtags-eldoc-function)
-
-;; imenu
-(setq-local imenu-create-index-function #'ggtags-build-imenu-index)
-
-(define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
-(define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
-(define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
-(define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
-(define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
-(define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
-
-(define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
-
-;; 自動でプロジェクトのルートディレクトリを探して, それ以下のファイルを見つけたり色々できる.
-(require  'projectile)
-(projectile-global-mode)
-
-;; windows indexing 高速化のおまじない.
-(setq projectile-indexing-method 'alien)
-
-;; 大きいプロジェクトだと劇的に速度が改善するらしい.
-(setq projectile-enable-caching t)
-
-
-;; make
-(require 'helm-make)
-
-(eval-after-load 'makefile-mode
-  '(define-key makefile-mode-map (kbd "M-\"") 'helm-make-projectile))
-(define-key c-mode-map (kbd "M-\"") 'helm-make-projectile)
-(define-key c++-mode-map (kbd "M-\"") 'helm-make-projectile)
+(global-flycheck-mode)
