@@ -391,7 +391,6 @@
 (global-set-key "\M-/" 'helm-etags-plus-history-go-forward)
 
 ;; directly tree
-
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer)
 
@@ -414,4 +413,4 @@
 
 ;; flycheck c/c++設定
 (require 'flycheck)
-(global-flycheck-mode)
+(add-hook 'c-mode-common-hook 'flycheck-mode)
