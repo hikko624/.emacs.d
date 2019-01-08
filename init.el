@@ -56,16 +56,16 @@
 ;; https いける？
 ;; MELPA-stableを追加
 (add-to-list 'package-archives
-             '("melpa-stable" . "https://melpa-stable.milkbox.net/packages/") t)
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 ;; MELPAを追加
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.milkbox.net/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 ;; MARMALADEを追加
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;; (add-to-list 'package-archives
+;;            '("marmalade" . "http://marmalade-repo.org/packages/") t)
 ;; Orgを追加
 (add-to-list 'package-archives
-             '("org" . "http://orgmode.org/elpa/") t)
+             '("org" . "https://orgmode.org/elpa/") t)
 (package-initialize)
 
 ;; インストールしていないパッケージをまとめてインストール
@@ -262,7 +262,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-quickhelp company-irony company-irony-c-headers direx flycheck-color-mode-line projectile-rails helm-etags-plus ctags ctags-update flycheck point-undo company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
+    (dirtree eproject tree-mode windata company-quickhelp company-irony company-irony-c-headers direx flycheck-color-mode-line projectile-rails helm-etags-plus ctags ctags-update flycheck point-undo company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
 
 ;; yasnippetの設定
 (require 'yasnippet)
@@ -377,6 +377,7 @@
     (switch-to-buffer-other-window
      (get-buffer-create buf-name))))
 ;; Ctrl+cを押したあとにShift+gでgoshのターミナル起動
+;; C=x C-eでデバッグできる
 (define-key global-map
   "\C-cG" 'scheme-other-window)
 
@@ -391,13 +392,19 @@
 (global-set-key "\M-/" 'helm-etags-plus-history-go-forward)
 
 ;; directly tree
-(require 'popwin)
-(setq display-buffer-function 'popwin:display-buffer)
+;; (require 'popwin)
+;; (setq display-buffer-function 'popwin:display-buffer)
 
-(require 'direx-project)
-(push '(direx:direx-mode :position left :width 50 :dedicated t)
-      popwin:special-display-config)
-(global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root-other-window)
+;; (require 'direx-project)
+;; (push '(direx:direx-mode :position left :width 50 :dedicated t)
+;;       popwin:special-display-config)
+;; (global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root-other-window)
+(require 'dirtree)
+(require 'eproject)
+(defun ep-dirtree ()
+  (interactive)
+  (dirtree eproject-root t))
+
 
 ;;いつでもupdate (create) TAGS
 (autoload 'ctags-update "ctags-update" "update TAGS using ctags" t)
