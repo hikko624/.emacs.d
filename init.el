@@ -262,7 +262,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (dirtree eproject tree-mode windata company-quickhelp company-irony company-irony-c-headers direx flycheck-color-mode-line projectile-rails helm-etags-plus ctags ctags-update flycheck point-undo company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
+    (magit dirtree eproject tree-mode windata company-quickhelp company-irony company-irony-c-headers direx flycheck-color-mode-line projectile-rails helm-etags-plus ctags ctags-update flycheck point-undo company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
 
 ;; yasnippetの設定
 (require 'yasnippet)
@@ -354,10 +354,7 @@
       (indent-region (region-beginning) (region-end))
     (all-indent)))
 
-;;  projectile
-(require 'projectile)
-(projectile-global-mode)
-
+;; Schemeの設定
 (setq process-coding-system-alist
       (cons '("gosh" utf-8 . utf-8) process-coding-system-alist))
 (setq scheme-program-name "/usr/local/bin/gosh -i")
@@ -421,3 +418,6 @@
 ;; flycheck c/c++設定
 (require 'flycheck)
 (add-hook 'c-mode-common-hook 'flycheck-mode)
+
+;; Magitの設定
+(global-set-key (kbd "C-x g") 'magit-status)
