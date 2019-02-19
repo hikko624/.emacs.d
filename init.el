@@ -1,4 +1,4 @@
-;; -*- lexical-binding: t -*-
+; -*- lexical-binding: t -*-
 
 ;; Mac用
 ;; command キーをメタキーとして使い、 option キーは修飾キーとして扱わない
@@ -94,9 +94,9 @@
         (append '((foreground-color . "white")
                   (background-color . "black")
                   ;; '(cursor-color . "white")
-                  (width . 150)
-                  (height . 50)
-                  (top . 22)
+                  ;; (width . 150)
+                  ;; (height . 50)
+                  ;; (top . 22)
                   (internal-border-width . 0)
                   (scroll-bar-width . 14)
                   (alpha 75 50)
@@ -186,8 +186,6 @@
       (append '(("(\\|)" . paren-face))
               lisp-font-lock-keywords-2))
 
-
-
 ;; 左に行数を表示
 (require 'linum)
 (setq linum-delay t)
@@ -262,7 +260,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit dirtree eproject tree-mode windata company-quickhelp company-irony company-irony-c-headers direx flycheck-color-mode-line projectile-rails helm-etags-plus ctags ctags-update flycheck point-undo company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
+    (js2-mode rtags magit flycheck-irony irony-eldoc dirtree eproject tree-mode windata company-quickhelp company-irony-c-headers direx flycheck-color-mode-line helm-etags-plus ctags ctags-update flycheck point-undo company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
 
 ;; yasnippetの設定
 (require 'yasnippet)
@@ -284,7 +282,27 @@
 
 ;; helmの設定
 (require 'helm)
-;; いつかやる予定
+(require 'helm-config)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(define-key global-map (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "M-x") 'helm-M-x)
+
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+
+;; helm-select-actionと交換
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-z")  'helm-select-action)
+
+;; helmのあいまい一致
+(setq helm-buffers-fuzzy-matching t
+      helm-recentf-fuzzy-match    t
+      helm-M-x-fuzzy-match        t)
+
+(helm-mode 1)
+
 
 ;; mykieはキーの自動登録するパッケージ
 (require 'mykie)
@@ -396,12 +414,17 @@
 ;; (push '(direx:direx-mode :position left :width 50 :dedicated t)
 ;;       popwin:special-display-config)
 ;; (global-set-key (kbd "C-x C-j") 'direx-project:jump-to-project-root-other-window)
-(require 'dirtree)
-(require 'eproject)
-(defun ep-dirtree ()
-  (interactive)
-  (dirtree eproject-root t))
+;; (require 'dirtree)
+;; (require 'eproject)
+;; (defun ep-dirtree ()
+;;   (interactive)
+;;   (dirtree eproject-root t))
 
+(require 'dired-subtree)
+;; iを置き換え(展開する)
+(define-key dired-mode-map (kbd "i") 'dired-subtree-insert)
+;; org-modeのようにTABで折り畳む
+(define-key dired-mode-map (kbd "<tab>") 'dired-subtree-remove)
 
 ;;いつでもupdate (create) TAGS
 (autoload 'ctags-update "ctags-update" "update TAGS using ctags" t)
@@ -413,7 +436,7 @@
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'objc-mode-hook 'irony-mode)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-(add-to-list 'company-backends 'company-irony) ; backend追加
+(add-to-list 'company-backends 'company-irony)
 
 ;; flycheck c/c++設定
 (require 'flycheck)
@@ -421,3 +444,7 @@
 
 ;; Magitの設定
 (global-set-key (kbd "C-x g") 'magit-status)
+
+;; JavaScriptの設定
+(require 'js2-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
