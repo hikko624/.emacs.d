@@ -8,3 +8,5 @@ projectile-bookmarks.eld
 semanticdb/
 srecode-map.el
 irony/*
+.local
+.cache

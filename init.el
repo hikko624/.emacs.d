@@ -151,25 +151,6 @@
 ;; 保存前に自動でクリーンアップ
 (setq whitespace-action '(auto-cleanup))
 
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(fa-face-hint ((t (:background "#3f3f3f" :foreground "#ffffff"))))
- '(fa-face-hint-bold ((t (:background "#3f3f3f" :weight bold))))
- '(fa-face-semi ((t (:background "#3f3f3f" :foreground "#ffffff" :weight bold))))
- '(fa-face-type ((t (:inherit (quote font-lock-type-face) :background "#3f3f3f"))))
- '(fa-face-type-bold ((t (:inherit (quote font-lock-type-face) :background "#999999" :bold t))))
- '(whitespace-empty ((((class color) (background dark)) :background "#200040" :foreground "darkgray") (((class color) (background light)) :background "khaki" :foreground "lightgray") (t :inverse-video t :weight bold :underline t)))
- '(whitespace-hspace ((((class color) (background dark)) :background "DeepPink3" :foreground "pink") (((class color) (background light)) :background "DeepPink2" :foreground "MidnightBlue") (t nil)))
- '(whitespace-indentation ((((class color) (background dark)) :background "grey16" :foreground "DeepPink") (((class color) (background light)) :background "chartreuse" :foreground "DeepPink") (t :inverse-video t :weight bold :underline t)))
- '(whitespace-space ((((class color) (background dark)) :background "DeepPink4" :foreground "pink") (((class color) (background light)) :background "DeepPink" :foreground "MidnightBlue") (t nil)))
- '(whitespace-space-before-tab ((((class color) (background dark)) :background "DeepPink" :foreground "firebrick") (((class color) (background light)) :background "DeepPink" :foreground "firebrick") (t :inverse-video t :weight bold :underline t)))
- '(whitespace-tab ((((class color) (background dark)) :background "grey16" :foreground "darkgray") (((class color) (background light)) :background "chartreuse" :foreground "MidnightBlue") (t :inverse-video t)))
- '(whitespace-trailing ((((class color) (background dark)) :background "#400080") (((class color) (background light)) :background "LightGreen") (t :inverse-video t :weight bold :underline t))))
-
 (global-whitespace-mode 1)
 
 
@@ -260,7 +241,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (js2-mode rtags magit flycheck-irony irony-eldoc dirtree eproject tree-mode windata company-quickhelp company-irony-c-headers direx flycheck-color-mode-line helm-etags-plus ctags ctags-update flycheck point-undo company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
+    (lsp-ui company-lsp lsp-mode nyan-mode neotree treemacs doom-modeline doom-themes js2-mode rtags magit flycheck-irony irony-eldoc dirtree eproject tree-mode windata company-quickhelp company-irony-c-headers direx flycheck-color-mode-line helm-etags-plus ctags ctags-update flycheck point-undo company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
 
 ;; yasnippetの設定
 (require 'yasnippet)
@@ -315,6 +296,9 @@
 (mykie:global-set-key "C-x C-y"
   :default aya-expand
   :C-u! aya-create)
+
+;; 括弧の自動補完
+(electric-pair-mode 1)
 
 ;; companyはauto-comleteと同じような自動補完
 (require 'company)
@@ -452,3 +436,142 @@
 ;; JavaScriptの設定
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+
+;; テーマ設定
+(require 'doom-themes)
+;; Global settings (defaults)
+(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+      doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
+;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
+;; may have their own settings.
+(load-theme 'doom-dracula t)
+
+;; Enable flashing mode-line on errors
+(doom-themes-visual-bell-config)
+
+;; Enable custom neotree theme (all-the-icons must be installed!)
+(doom-themes-neotree-config)
+(setq neo-window-width 40)
+;; or for treemacs users
+(doom-themes-treemacs-config)
+
+;; Corrects (and improves) org-mode's native fontification.
+(doom-themes-org-config)
+
+;; emacsのモードライン
+(require 'doom-modeline)
+(doom-modeline-mode 1)
+;; How tall the mode-line should be (only respected in GUI Emacs).
+(setq doom-modeline-height 25)
+
+;; How wide the mode-line bar should be (only respected in GUI Emacs).
+(setq doom-modeline-bar-width 3)
+
+;; Determines the style used by `doom-modeline-buffer-file-name'.
+;;
+;; Given ~/Projects/FOSS/emacs/lisp/comint.el
+;;   truncate-upto-project => ~/P/F/emacs/lisp/comint.el
+;;   truncate-from-project => ~/Projects/FOSS/emacs/l/comint.el
+;;   truncate-with-project => emacs/l/comint.el
+;;   truncate-except-project => ~/P/F/emacs/l/comint.el
+;;   truncate-upto-root => ~/P/F/e/lisp/comint.el
+;;   truncate-all => ~/P/F/e/l/comint.el
+;;   relative-from-project => emacs/lisp/comint.el
+;;   relative-to-project => lisp/comint.el
+;;   file-name => comint.el
+;;   buffer-name => comint.el<2> (uniquify buffer name)
+;;
+;; If you are expereicing the laggy issue, especially while editing remote files
+;; with tramp, please try `file-name' style.
+;; Please refer to https://github.com/bbatsov/projectile/issues/657.
+(setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
+
+;; If non-nil, the mode-line is displayed with the `variable-pitch' face.
+(setq doom-modeline-enable-variable-pitch nil)
+
+;; Whether show `all-the-icons' or not (if nil nothing will be showed).
+(setq doom-modeline-icon t)
+
+;; Whether show the icon for major mode. It respects `doom-modeline-icon'.
+(setq doom-modeline-major-mode-icon t)
+
+;; Display color icons for `major-mode'. It respects `all-the-icons-color-icons'.
+(setq doom-modeline-major-mode-color-icon nil)
+
+;; Whether display minor modes or not. Non-nil to display in mode-line.
+(setq doom-modeline-minor-modes nil)
+
+;; If non-nil, a word count will be added to the selection-info modeline segment.
+(setq doom-modeline-enable-word-count nil)
+
+;; If non-nil, only display one number for checker information if applicable.
+(setq doom-modeline-checker-simple-format t)
+
+;; Whether display perspective name or not. Non-nil to display in mode-line.
+(setq doom-modeline-persp-name t)
+
+;; Whether display `lsp' state or not. Non-nil to display in mode-line.
+(setq doom-modeline-lsp t)
+
+;; Whether display github notifications or not. Requires `ghub` package.
+(setq doom-modeline-github nil)
+
+;; The interval of checking github.
+(setq doom-modeline-github-interval (* 30 60))
+
+;; Whether display environment version or not.
+(setq doom-modeline-env-version t)
+
+;; What executable of Python will be used (if nil nothing will be showed).
+(setq doom-modeline-python-executable "python")
+
+;; Whether display mu4e notifications or not. Requires `mu4e-alert' package.
+(setq doom-modeline-mu4e t)
+
+;; Whether display irc notifications or not. Requires `circe' package.
+(setq doom-modeline-irc t)
+
+;; Function to stylize the irc buffer names.
+(setq doom-modeline-irc-stylize 'identity)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fa-face-hint ((t (:background "#3f3f3f" :foreground "#ffffff"))))
+ '(fa-face-hint-bold ((t (:background "#3f3f3f" :weight bold))))
+ '(fa-face-semi ((t (:background "#3f3f3f" :foreground "#ffffff" :weight bold))))
+ '(fa-face-type ((t (:inherit (quote font-lock-type-face) :background "#3f3f3f"))))
+ '(fa-face-type-bold ((t (:inherit (quote font-lock-type-face) :background "#999999" :bold t))))
+ '(helm-ff-dotted-directory ((t (:foreground "deep sky blue"))))
+ '(helm-selection ((t (:inherit bold :background "dark red"))))
+ '(whitespace-empty ((((class color) (background dark)) :background "#200040" :foreground "darkgray") (((class color) (background light)) :background "khaki" :foreground "lightgray") (t :inverse-video t :weight bold :underline t)))
+ '(whitespace-hspace ((((class color) (background dark)) :background "DeepPink3" :foreground "pink") (((class color) (background light)) :background "DeepPink2" :foreground "MidnightBlue") (t nil)))
+ '(whitespace-indentation ((((class color) (background dark)) :background "grey16" :foreground "DeepPink") (((class color) (background light)) :background "chartreuse" :foreground "DeepPink") (t :inverse-video t :weight bold :underline t)))
+ '(whitespace-space ((((class color) (background dark)) :background "DeepPink4" :foreground "pink") (((class color) (background light)) :background "DeepPink" :foreground "MidnightBlue") (t nil)))
+ '(whitespace-space-before-tab ((((class color) (background dark)) :background "DeepPink" :foreground "firebrick") (((class color) (background light)) :background "DeepPink" :foreground "firebrick") (t :inverse-video t :weight bold :underline t)))
+ '(whitespace-tab ((((class color) (background dark)) :background "grey16" :foreground "darkgray") (((class color) (background light)) :background "chartreuse" :foreground "MidnightBlue") (t :inverse-video t)))
+ '(whitespace-trailing ((((class color) (background dark)) :background "#400080") (((class color) (background light)) :background "LightGreen") (t :inverse-video t :weight bold :underline t))))
+
+
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
+(require 'nyan-mode)
+(nyan-mode)
+(nyan-start-animation)
+(setq mode-line-format
+      (list
+       '(:eval (list (nyan-create)))
+       ))
+
+(require 'lsp-mode)
+(add-hook 'c-mode-common-hook #'lsp)
+
+(require 'company-lsp)
+(add-to-list 'company-backends 'company-lsp)
+
+(require 'lsp-ui)
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+(add-hook 'c-mode-common-hook 'flycheck-mode)
