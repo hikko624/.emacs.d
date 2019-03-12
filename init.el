@@ -99,7 +99,7 @@
                   ;; (top . 22)
                   (internal-border-width . 0)
                   (scroll-bar-width . 14)
-                  (alpha 75 50)
+                  (alpha 90 45)
                   ;; (font . "ricty-13.5")
                   ;; (font . "ricty discord-13.5")
                   )
@@ -151,8 +151,55 @@
 ;; 保存前に自動でクリーンアップ
 (setq whitespace-action '(auto-cleanup))
 
-(global-whitespace-mode 1)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(whitespace-tab
+   ((((class color) (background dark))
+     :background "grey16" :foreground "darkgray")
+    (((class color) (background light))
+     :background "chartreuse"  :foreground "MidnightBlue")
+    (t :inverse-video t)))
+ '(whitespace-space
+   ((((class color) (background dark))
+     :background "DeepPink4" :foreground "pink")
+    (((class color) (background light))
+     :background "DeepPink" :foreground "MidnightBlue")
+    (t nil)))
+ '(whitespace-hspace
+   ((((class color) (background dark))
+     :background "DeepPink3" :foreground "pink")
+    (((class color) (background light))
+     :background "DeepPink2" :foreground "MidnightBlue")
+    (t nil)))
+ '(whitespace-trailing
+   ((((class color) (background dark))
+     :background "#400080")
+    (((class color) (background light))
+     :background "LightGreen")
+    (t :inverse-video t :weight bold :underline t)))
+ '(whitespace-space-before-tab
+   ((((class color) (background dark))
+     :background "DeepPink" :foreground "firebrick")
+    (((class color) (background light))
+     :background "DeepPink" :foreground "firebrick")
+    (t :inverse-video t :weight bold :underline t)))
+ '(whitespace-indentation
+   ((((class color) (background dark))
+     :background "grey16" :foreground "DeepPink")
+    (((class color) (background light))
+     :background "chartreuse" :foreground "DeepPink")
+    (t :inverse-video t :weight bold :underline t)))
+ '(whitespace-empty
+   ((((class color) (background dark))
+     :background "#200040" :foreground "darkgray")
+    (((class color) (background light))
+     :background "khaki" :foreground "lightgray")
+    (t :inverse-video t :weight bold :underline t))))
 
+(global-whitespace-mode 1)
 
 ;; 括弧を薄くする
 (defvar paren-face 'paren-face)
@@ -241,7 +288,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (lsp-ui company-lsp lsp-mode nyan-mode neotree treemacs doom-modeline doom-themes js2-mode rtags magit flycheck-irony irony-eldoc dirtree eproject tree-mode windata company-quickhelp company-irony-c-headers direx flycheck-color-mode-line helm-etags-plus ctags ctags-update flycheck point-undo company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
+    (dashboard lsp-ui company-lsp lsp-mode nyan-mode neotree treemacs doom-modeline doom-themes js2-mode rtags magit flycheck-irony irony-eldoc dirtree eproject tree-mode windata company-quickhelp company-irony-c-headers direx flycheck-color-mode-line helm-etags-plus ctags ctags-update flycheck point-undo company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
 
 ;; yasnippetの設定
 (require 'yasnippet)
@@ -290,7 +337,7 @@
 
 
 ;; mykieはキーの自動登録するパッケージ
-(require 'mykie)
+;; (require 'mykie)
 ;; autoyasnippetのキー設定
 (setq aya-create-with-newline t)
 (mykie:global-set-key "C-x C-y"
@@ -301,7 +348,7 @@
 (electric-pair-mode 1)
 
 ;; companyはauto-comleteと同じような自動補完
-(require 'company)
+;; (require 'company)
 ;; 全バッファで有効にする
 (global-company-mode)
 ;; デフォルトは0.5，nil
@@ -385,7 +432,7 @@
   "\C-cG" 'scheme-other-window)
 
 ;; helmの機能を使ったetag機能
-(require 'helm-etags-plus)
+;; (require 'helm-etags-plus)
 (global-set-key "\M-." 'helm-etags-plus-select)
 ;;list all visited tags
 (global-set-key "\M-*" 'helm-etags-plus-history)
@@ -408,7 +455,7 @@
 ;;   (interactive)
 ;;   (dirtree eproject-root t))
 
-(require 'dired-subtree)
+;; (require 'dired-subtree)
 ;; iを置き換え(展開する)
 (define-key dired-mode-map (kbd "i") 'dired-subtree-insert)
 ;; org-modeのようにTABで折り畳む
@@ -419,7 +466,7 @@
 (global-set-key "\C-cE" 'ctags-update)
 
 ;; C/C++関連の設定
-(require 'irony)
+;; (require 'irony)
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'objc-mode-hook 'irony-mode)
@@ -427,14 +474,14 @@
 (add-to-list 'company-backends 'company-irony)
 
 ;; flycheck c/c++設定
-(require 'flycheck)
+;; (require 'flycheck)
 (add-hook 'c-mode-common-hook 'flycheck-mode)
 
 ;; Magitの設定
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; JavaScriptの設定
-(require 'js2-mode)
+;; (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 
@@ -535,30 +582,10 @@
 
 ;; Function to stylize the irc buffer names.
 (setq doom-modeline-irc-stylize 'identity)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(fa-face-hint ((t (:background "#3f3f3f" :foreground "#ffffff"))))
- '(fa-face-hint-bold ((t (:background "#3f3f3f" :weight bold))))
- '(fa-face-semi ((t (:background "#3f3f3f" :foreground "#ffffff" :weight bold))))
- '(fa-face-type ((t (:inherit (quote font-lock-type-face) :background "#3f3f3f"))))
- '(fa-face-type-bold ((t (:inherit (quote font-lock-type-face) :background "#999999" :bold t))))
- '(helm-ff-dotted-directory ((t (:foreground "deep sky blue"))))
- '(helm-selection ((t (:inherit bold :background "dark red"))))
- '(whitespace-empty ((((class color) (background dark)) :background "#200040" :foreground "darkgray") (((class color) (background light)) :background "khaki" :foreground "lightgray") (t :inverse-video t :weight bold :underline t)))
- '(whitespace-hspace ((((class color) (background dark)) :background "DeepPink3" :foreground "pink") (((class color) (background light)) :background "DeepPink2" :foreground "MidnightBlue") (t nil)))
- '(whitespace-indentation ((((class color) (background dark)) :background "grey16" :foreground "DeepPink") (((class color) (background light)) :background "chartreuse" :foreground "DeepPink") (t :inverse-video t :weight bold :underline t)))
- '(whitespace-space ((((class color) (background dark)) :background "DeepPink4" :foreground "pink") (((class color) (background light)) :background "DeepPink" :foreground "MidnightBlue") (t nil)))
- '(whitespace-space-before-tab ((((class color) (background dark)) :background "DeepPink" :foreground "firebrick") (((class color) (background light)) :background "DeepPink" :foreground "firebrick") (t :inverse-video t :weight bold :underline t)))
- '(whitespace-tab ((((class color) (background dark)) :background "grey16" :foreground "darkgray") (((class color) (background light)) :background "chartreuse" :foreground "MidnightBlue") (t :inverse-video t)))
- '(whitespace-trailing ((((class color) (background dark)) :background "#400080") (((class color) (background light)) :background "LightGreen") (t :inverse-video t :weight bold :underline t))))
-
 
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
-(require 'nyan-mode)
+;; (require 'nyan-mode)
 (nyan-mode)
 (nyan-start-animation)
 (setq mode-line-format
@@ -566,12 +593,18 @@
        '(:eval (list (nyan-create)))
        ))
 
-(require 'lsp-mode)
-(add-hook 'c-mode-common-hook #'lsp)
+;; language server protocolの設定
+;; いつかやる
+;; (require 'lsp-mode)
+;; (add-hook 'c-mode-common-hook #'lsp)
 
-(require 'company-lsp)
-(add-to-list 'company-backends 'company-lsp)
+;; (require 'company-lsp)
+;; (add-to-list 'company-backends 'company-lsp)
 
-(require 'lsp-ui)
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
-(add-hook 'c-mode-common-hook 'flycheck-mode)
+;; (require 'lsp-ui)
+;; (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;; (add-hook 'c-mode-common-hook 'flycheck-mode)
+
+
+;; (require 'dashboard)
+;; (dashboard-setup-startup-hook)
