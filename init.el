@@ -1,4 +1,4 @@
-; -*- lexical-binding: t -*-
+                                        ; -*- lexical-binding: t -*-
 
 ;; Mac用
 ;; command キーをメタキーとして使い、 option キーは修飾キーとして扱わない
@@ -73,12 +73,12 @@
   (package-refresh-contents)
   (dolist (package
            '(undo-tree popwin
-             flycheck
-             company
-             yasnippet
-             helm helm-c-yasnippet helm-company
+                       flycheck
+                       company
+                       yasnippet
+                       helm helm-c-yasnippet helm-company
 
-             ))
+                       ))
     (unless (package-installed-p package)
       (package-install package))))
 
