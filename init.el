@@ -76,8 +76,24 @@
                        flycheck
                        company
                        yasnippet
-                       helm helm-c-yasnippet helm-company
-
+                       helm
+                       helm-c-yasnippet
+                       helm-company
+                       company-lsp
+                       lsp-mode
+                       nyan-mode
+                       neotree treemacs
+                       doom-modeline doom-themes
+                       js2-mode
+                       rtags magit
+                       flycheck-irony irony-eldoc
+                       dirtree tree-mode
+                       windata
+                       company-quickhelp company-irony-c-headers
+                       direx
+                       flycheck-color-mode-line helm-etags-plus ctags ctags-update
+                       point-undo mykie auto-yasnippet el-autoyas
+                       google-translate undo-tree
                        ))
     (unless (package-installed-p package)
       (package-install package))))
