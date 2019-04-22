@@ -3,7 +3,6 @@ bookmarks
 auto-save-list/
 elpa/
 network-security.data
-snippets/
 projectile-bookmarks.eld
 semanticdb/
 srecode-map.el
@@ -11,3 +10,5 @@ irony/*
 .local
 .cache
 games
+.lsp-session*
+transient/

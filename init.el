@@ -1,5 +1,4 @@
-                                        ; -*- lexical-binding: t -*-
-
+; -*- lexical-binding: t -*-
 ;; Mac用
 ;; command キーをメタキーとして使い、 option キーは修飾キーとして扱わない
 (when (eq window-system 'ns)
@@ -84,20 +83,17 @@
                        nyan-mode
                        neotree treemacs
                        doom-modeline doom-themes
-                       js2-mode
-                       rtags magit
-                       flycheck-irony irony-eldoc
+                       magit
                        dirtree tree-mode
                        windata
-                       company-quickhelp company-irony-c-headers
+                       company-quickhelp
                        direx
-                       flycheck-color-mode-line helm-etags-plus ctags ctags-update
-                       point-undo mykie auto-yasnippet el-autoyas
-                       google-translate undo-tree
+                       flycheck-color-mode-line
+                       mykie auto-yasnippet el-autoyas
+                       undo-tree
                        ))
     (unless (package-installed-p package)
       (package-install package))))
-
 
 
 ;; タイトルバー
@@ -172,48 +168,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(whitespace-tab
-   ((((class color) (background dark))
-     :background "grey16" :foreground "darkgray")
-    (((class color) (background light))
-     :background "chartreuse"  :foreground "MidnightBlue")
-    (t :inverse-video t)))
- '(whitespace-space
-   ((((class color) (background dark))
-     :background "DeepPink4" :foreground "pink")
-    (((class color) (background light))
-     :background "DeepPink" :foreground "MidnightBlue")
-    (t nil)))
- '(whitespace-hspace
-   ((((class color) (background dark))
-     :background "DeepPink3" :foreground "pink")
-    (((class color) (background light))
-     :background "DeepPink2" :foreground "MidnightBlue")
-    (t nil)))
- '(whitespace-trailing
-   ((((class color) (background dark))
-     :background "#400080")
-    (((class color) (background light))
-     :background "LightGreen")
-    (t :inverse-video t :weight bold :underline t)))
- '(whitespace-space-before-tab
-   ((((class color) (background dark))
-     :background "DeepPink" :foreground "firebrick")
-    (((class color) (background light))
-     :background "DeepPink" :foreground "firebrick")
-    (t :inverse-video t :weight bold :underline t)))
- '(whitespace-indentation
-   ((((class color) (background dark))
-     :background "grey16" :foreground "DeepPink")
-    (((class color) (background light))
-     :background "chartreuse" :foreground "DeepPink")
-    (t :inverse-video t :weight bold :underline t)))
- '(whitespace-empty
-   ((((class color) (background dark))
-     :background "#200040" :foreground "darkgray")
-    (((class color) (background light))
-     :background "khaki" :foreground "lightgray")
-    (t :inverse-video t :weight bold :underline t))))
+ '(whitespace-empty ((((class color) (background dark)) :background "#200040" :foreground "darkgray") (((class color) (background light)) :background "khaki" :foreground "lightgray") (t :inverse-video t :weight bold :underline t)))
+ '(whitespace-hspace ((((class color) (background dark)) :background "DeepPink3" :foreground "pink") (((class color) (background light)) :background "DeepPink2" :foreground "MidnightBlue") (t nil)))
+ '(whitespace-indentation ((((class color) (background dark)) :background "grey16" :foreground "DeepPink") (((class color) (background light)) :background "chartreuse" :foreground "DeepPink") (t :inverse-video t :weight bold :underline t)))
+ '(whitespace-space ((((class color) (background dark)) :background "DeepPink4" :foreground "pink") (((class color) (background light)) :background "DeepPink" :foreground "MidnightBlue") (t nil)))
+ '(whitespace-space-before-tab ((((class color) (background dark)) :background "DeepPink" :foreground "firebrick") (((class color) (background light)) :background "DeepPink" :foreground "firebrick") (t :inverse-video t :weight bold :underline t)))
+ '(whitespace-tab ((((class color) (background dark)) :background "grey16" :foreground "darkgray") (((class color) (background light)) :background "chartreuse" :foreground "MidnightBlue") (t :inverse-video t)))
+ '(whitespace-trailing ((((class color) (background dark)) :background "#400080") (((class color) (background light)) :background "LightGreen") (t :inverse-video t :weight bold :underline t))))
 
 (global-whitespace-mode 1)
 
@@ -304,23 +265,20 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (dashboard lsp-ui company-lsp lsp-mode nyan-mode neotree treemacs doom-modeline doom-themes js2-mode rtags magit flycheck-irony irony-eldoc dirtree eproject tree-mode windata company-quickhelp company-irony-c-headers direx flycheck-color-mode-line helm-etags-plus ctags ctags-update flycheck point-undo company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
+    (web-mode yasnippet-snippets ccls helm-lsp dashboard lsp-ui company-lsp lsp-mode nyan-mode neotree treemacs doom-modeline doom-themes js2-mode magit dirtree eproject tree-mode windata company-quickhelp direx flycheck-color-mode-line flycheck company mykie auto-yasnippet el-autoyas helm-c-yasnippet popwin google-translate helm undo-tree))))
 
 ;; yasnippetの設定
 (require 'yasnippet)
-(setq yas-snippet-dirs
-      '(
-        ;; 自作のsnippets
-        "~/.emacs.d/mysnippets"
-        ;; ネッツから拾ってきたsnippets
-        "~/.emacs.d/snippets"
-        ))
 ;; 既存スニペットを挿入する
 (define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
 ;; 新規スニペットを作成するバッファを用意する
 (define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
 ;; 既存スニペットを閲覧・編集する
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
+;; helmでyasnippet選択
+(require 'helm-c-yasnippet)
+(setq helm-yas-space-match-any-greedy t)
+(global-set-key (kbd "C-c y") 'helm-yas-complete)
 ;; yas起動
 (yas-global-mode 1)
 
@@ -342,15 +300,12 @@
 
 (global-set-key (kbd "C-c h o") 'helm-occur)
 
-
-
 ;; helmのあいまい一致
 (setq helm-buffers-fuzzy-matching t
       helm-recentf-fuzzy-match    t
       helm-M-x-fuzzy-match        t)
 
 (helm-mode 1)
-
 
 ;; mykieはキーの自動登録するパッケージ
 ;; (require 'mykie)
@@ -375,7 +330,6 @@
 (setq company-selection-wrap-around t)
 
 ;; auto-completeみたいな色にする
-
 (set-face-attribute 'company-tooltip nil
                     :foreground "black" :background "lightgrey")
 (set-face-attribute 'company-tooltip-common nil
@@ -447,16 +401,6 @@
 (define-key global-map
   "\C-cG" 'scheme-other-window)
 
-;; helmの機能を使ったetag機能
-;; (require 'helm-etags-plus)
-(global-set-key "\M-." 'helm-etags-plus-select)
-;;list all visited tags
-(global-set-key "\M-*" 'helm-etags-plus-history)
-;;go back directly
-(global-set-key "\M-," 'helm-etags-plus-history-go-back)
-;;go forward directly
-(global-set-key "\M-/" 'helm-etags-plus-history-go-forward)
-
 ;; directly tree
 ;; (require 'popwin)
 ;; (setq display-buffer-function 'popwin:display-buffer)
@@ -477,17 +421,13 @@
 ;; org-modeのようにTABで折り畳む
 (define-key dired-mode-map (kbd "<tab>") 'dired-subtree-remove)
 
-;;いつでもupdate (create) TAGS
-(autoload 'ctags-update "ctags-update" "update TAGS using ctags" t)
-(global-set-key "\C-cE" 'ctags-update)
-
 ;; C/C++関連の設定
 ;; (require 'irony)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-(add-to-list 'company-backends 'company-irony)
+;; (add-hook 'c-mode-hook 'irony-mode)
+;; (add-hook 'c++-mode-hook 'irony-mode)
+;; (add-hook 'objc-mode-hook 'irony-mode)
+;; (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+;; (add-to-list 'company-backends 'company-irony)
 
 ;; flycheck c/c++設定
 ;; (require 'flycheck)
@@ -496,10 +436,14 @@
 ;; Magitの設定
 (global-set-key (kbd "C-x g") 'magit-status)
 
-;; JavaScriptの設定
-;; (require 'js2-mode)
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-
+;; web-modeの設定
+(require 'web-mode)
+;; web-modeでhtml css jsを書く設定
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js[x]?$" . web-mode))
+;; 拡張子 .js でもJSX編集モードにする
+(setq web-mode-content-types-alist
+      '(("jsx" . "\\.js[x]?\\'")))
 
 ;; テーマ設定
 (require 'doom-themes)
@@ -610,17 +554,31 @@
        ))
 
 ;; language server protocolの設定
-;; いつかやる
-;; (require 'lsp-mode)
-;; (add-hook 'c-mode-common-hook #'lsp)
+;; 現在設定中[C++, Ruby(solargraph必須)]
+(require 'lsp)
+(require 'lsp-mode)
+(add-hook 'c-mode-common-hook #'lsp)
+(add-hook 'ruby-mode-hook #'lsp)
 
-;; (require 'company-lsp)
-;; (add-to-list 'company-backends 'company-lsp)
+(require 'company-lsp)
+(add-to-list 'company-backends 'company-lsp)
 
-;; (require 'lsp-ui)
-;; (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-;; (add-hook 'c-mode-common-hook 'flycheck-mode)
+(require 'lsp-ui)
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
+(lsp-ui-peek-enable t)
+(define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+(define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+
+;; C/C++専用lsp
+(require 'ccls)
+
+;; MakefileをEmacsで書くときインデントがtabになる
+(add-hook 'makefile-mode-hook
+  '(lambda()
+     (setq indent-tabs-mode t)
+   )
+)
 
 ;; (require 'dashboard)
 ;; (dashboard-setup-startup-hook)
