@@ -12,3 +12,4 @@ irony/*
 games
 .lsp-session*
 transient/
+custom.el
