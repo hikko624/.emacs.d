@@ -5,7 +5,8 @@
   :init
   ;; 全バッファで有効にする
   (global-company-mode)
-  (company-quickhelp-mode +1)
+  ;; ヘルプモード
+  (company-quickhelp-mode)
   :config
     ;; デフォルトは0.5，nil
   (setq company-idle-delay 0)
@@ -14,24 +15,23 @@
   ;; 候補の一番下でさらに下に行こうとすると一番上に戻る
   (setq company-selection-wrap-around t)
   ;; auto-completeみたいな色にする
-  (set-face-attribute 'company-tooltip nil
-                      :foreground "black" :background "lightgrey")
-  (set-face-attribute 'company-tooltip-common nil
-                      :foreground "black" :background "lightgrey")
-  (set-face-attribute 'company-tooltip-common-selection nil
-                      :foreground "white" :background "steelblue")
-  (set-face-attribute 'company-tooltip-selection nil
-                      :foreground "black" :background "steelblue")
-  (set-face-attribute 'company-preview-common nil
-                      :background nil :foreground "lightgrey" :underline t)
-  (set-face-attribute 'company-scrollbar-fg nil
-                      :background "orange")
-  (set-face-attribute 'company-scrollbar-bg nil
-                      :background "gray40")
+  ;; (set-face-attribute 'company-tooltip nil
+  ;;                     :foreground "black" :background "lightgrey")
+  ;; (set-face-attribute 'company-tooltip-common nil
+  ;;                     :foreground "black" :background "lightgrey")
+  ;; (set-face-attribute 'company-tooltip-common-selection nil
+  ;;                     :foreground "white" :background "steelblue")
+  ;; (set-face-attribute 'company-tooltip-selection nil
+  ;;                     :foreground "black" :background "steelblue")
+  ;; (set-face-attribute 'company-preview-common nil
+  ;;                     :background nil :foreground "lightgrey" :underline t)
+  ;; (set-face-attribute 'company-scrollbar-fg nil
+  ;;                     :background "orange")
+  ;; (set-face-attribute 'company-scrollbar-bg nil
+  ;;                     :background "gray40")
   :bind (
-         ;; 各種メジャーモードでも C-M-iで company-modeの補完を使
+         ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
          ("C-M-i" . company-complete)
-
          :map company-active-map
          ;; C-n, C-pで補完候補を次/前の候補を選択
          ("C-n" . company-select-next)
@@ -44,3 +44,6 @@
          ;; C-n, C-pで補完候補を次/前の候補を選択
          ("C-n" . company-select-next)
          ("C-p" . company-select-previous)))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
