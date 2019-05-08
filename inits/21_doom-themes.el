@@ -1,5 +1,6 @@
 ;; テーマ設定
 (use-package doom-themes
+  :ensure t
   :custom
   ;; if nil, italics is universally disabled
   (doom-themes-enable-italic t)

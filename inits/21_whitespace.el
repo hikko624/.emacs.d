@@ -2,6 +2,7 @@
 ;;	　
 ;;       "\\(\\( \\|ࢠ\\|ठ\\|ภ\\|༠\\)+\\)"
 (use-package whitespace
+  :ensure t
   :config
   (setq whitespace-style '(facetabs spaces trailing space-before-tab::tab indentation empty space-mark tab-mark))
   (setq whitespace-display-mappings

@@ -1,5 +1,6 @@
 ;; helmの設定
 (use-package helm
+  :ensure t
   :config
   ;; helmのあいまい一致
   (setq helm-buffers-fuzzy-matching t

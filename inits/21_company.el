@@ -46,4 +46,7 @@
          ("C-p" . company-select-previous)))
 
 (use-package company-box
+  :ensure t
   :hook (company-mode . company-box-mode))
+(use-package company-quickhelp
+  :ensure t)

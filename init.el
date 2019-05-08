@@ -16,6 +16,8 @@
 ;;              '("org" . "https://orgmode.org/elpa/") t)
 (package-initialize)
 
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 (require 'use-package)
 ;; init-loader
 (use-package init-loader
