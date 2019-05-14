@@ -9,6 +9,6 @@
               ("C-x i n" . yas-new-snippet)
               ;; 既存スニペットを閲覧・編集する
               ("C-x i v" . yas-visit-snippet-file))
-  :config
+  :init
   ;; yas起動
   (yas-global-mode 1))

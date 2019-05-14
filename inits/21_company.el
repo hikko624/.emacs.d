@@ -1,5 +1,4 @@
 ;; companyはauto-comleteと同じような自動補完
-
 (use-package company
   :ensure t
   :init
@@ -8,10 +7,12 @@
   ;; ヘルプモード
   (company-quickhelp-mode)
   :config
-    ;; デフォルトは0.5，nil
-  (setq company-idle-delay 0)
-  ;; デフォルトは4
-  (setq company-minimum-prefix-length 1)
+  ;; 1個目を自動的に補完
+  (setq company-auto-expand t)
+  ;; デフォルトは0.5
+  (setq company-idle-delay 0.5)
+  ;; デフォルトは4、2文字目で補完開始
+  (setq company-minimum-prefix-length 2)
   ;; 候補の一番下でさらに下に行こうとすると一番上に戻る
   (setq company-selection-wrap-around t)
   ;; auto-completeみたいな色にする
@@ -27,7 +28,7 @@
   ;;                     :background nil :foreground "lightgrey" :underline t)
   ;; (set-face-attribute 'company-scrollbar-fg nil
   ;;                     :background "orange")
-  ;; (set-face-attribute 'company-scrollbar-bg nil
+  ;; (set-face-attribute 'company-scrolnlbar-bg nil
   ;;                     :background "gray40")
   :bind (
          ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う

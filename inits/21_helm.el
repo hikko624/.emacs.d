@@ -7,7 +7,7 @@
         helm-recentf-fuzzy-match    t
         helm-M-x-fuzzy-match        t)
   :bind (
-         ("C-x b" . helm-mini)
+         ("C-x b"   . helm-mini)
          ("C-x C-f" . helm-find-files)
          ("M-x" . helm-M-x)
          ("C-x C-b" . helm-buffers-list)
@@ -16,7 +16,7 @@
          ("<tab>"   . helm-execute-persistent-action)
          ("C-i"     . helm-execute-persistent-action)
          ("C-z"     . helm-select-action)
-         ("C-c y" . helm-yas-complete)
+         ("C-c y"   . helm-yas-complete)
          )
   :init
   (helm-mode 1)
