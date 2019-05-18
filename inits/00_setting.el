@@ -130,6 +130,9 @@
 ;; 括弧の自動補完
 (electric-pair-mode 1)
 
+;; バッファの自動更新
+(global-auto-revert-mode 1)
+
 ;; インデントするコマンド自作
 ;; M-x file-indent
 ;; (defun all-indent ()
