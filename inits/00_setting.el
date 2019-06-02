@@ -44,7 +44,7 @@
                   ;; (top . 22)
                   (internal-border-width . 0)
                   (scroll-bar-width . 14)
-                  (alpha 90 45)
+                  (alpha 90 75)
                   ;; (font . "ricty-13.5")
                   ;; (font . "ricty discord-13.5")
                   )
