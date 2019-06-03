@@ -1,2 +1,5 @@
 (use-package rspec-mode
-  :ensure t)
+  :ensure t
+  :config
+  (rspec-install-snippets)
+  )
