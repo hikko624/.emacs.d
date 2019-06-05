@@ -3,7 +3,7 @@ bookmarks
 auto-save-list/
 elpa/
 network-security.data
-projectile-bookmarks.eld
+projectile*d
 semanticdb/
 srecode-map.el
 irony/*
