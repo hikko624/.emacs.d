@@ -1,6 +1,7 @@
 (use-package projectile
   :init
   (projectile-mode)
+  (setq projectile-file-exists-remote-cache-expire nil)
   :ensure t)
 
 (use-package projectile-rails
