@@ -13,7 +13,8 @@
   :init
   (setq projectile-enable-caching t)
   :bind (
-         ;; 参考 http://tuhdo.github.io/helm-projectile.html
+         :map projectile-mode-map
+         ;; 参考 https://github.com/bbatsov/projectile/blob/master/doc/configuration.md
          ("C-c p h" . helm-projectile)
          ("C-c p p" . helm-projectile-switch-project)
          ("C-c p f" . helm-projectile-find-file)
