@@ -1,4 +1,6 @@
 (use-package projectile
+  :init
+  (projectile-mode)
   :ensure t)
 
 (use-package projectile-rails
@@ -25,8 +27,7 @@
          ("C-c p b" . helm-projectile-switch-to-buffer)
          ("C-c p s g" . helm-projectile-grep)
          ("C-c p s a" . helm-projectile-ack)
-         ("C-c p s s" . helm-projectile-ag)
-         )
+         ("C-c p s s" . helm-projectile-ag))
   :config
   (helm-projectile-on)
   )
