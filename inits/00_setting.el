@@ -104,11 +104,15 @@
 (use-package all-the-icons
   :ensure t)
 
-;; *.~ とかのバックアップファイルを作らない
-(setq make-backup-files nil)
+;; foo.txt~ とかのバックアップファイルを作るけど一箇所のファイルに作っておく
+(setq make-backup-files t)
+(setq backup-directory-alist '((".*" . "~/.emacs.d/.backups/")))
 
-;; .#* とかのバックアップファイルを作らない
+;; .#foo.txt# とかの自動保存ファイルを作らない
 (setq auto-save-default nil)
+
+;; .#foo.txt とかのロックファイルを作らない
+(setq create-lockfiles nil)
 
 ;; (require 'shell-command)
 ;; (shell-command-completion-mode 1)

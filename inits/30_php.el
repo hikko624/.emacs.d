@@ -3,7 +3,8 @@
 (use-package php-mode
   :ensure t
   :init
-   (ac-php-core-eldoc-setup)
+  (ac-php-core-eldoc-setup)
+  (setq flycheck-phpcs-standard "PSR2")
   :hook (
          (php-mode . (lambda () (set (make-local-variable 'company-backends)
                                      '(;; list of backends
