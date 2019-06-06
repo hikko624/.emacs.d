@@ -11,7 +11,7 @@
   (c++-mode . lsp)
   (c-mode . lsp)
   (ruby-mode . lsp)
-  (php-mode . lsp)
+  ;; (php-mode . lsp)
   )
 
 (use-package lsp-ui

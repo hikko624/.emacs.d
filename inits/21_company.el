@@ -51,3 +51,13 @@
   :hook (company-mode . company-box-mode))
 (use-package company-quickhelp
   :ensure t)
+
+(use-package company-phpactor :ensure t)
+(use-package company-php
+  :ensure t
+  :init
+  (add-to-list 'company-backends 'company-ac-php-backend)
+  (add-to-list 'company-backends 'company-dabbrev-code)
+  (add-to-list 'company-backends 'company-capf)
+  (add-to-list 'company-backends 'company-phpactor)
+  (add-to-list 'company-backends 'company-files))
