@@ -1,5 +1,6 @@
 (use-package phpactor :ensure t)
 (use-package company-phpactor :ensure t)
+(use-package company-php)
 (use-package php-mode
   :ensure t
   :init
@@ -8,11 +9,11 @@
   :hook (
          (php-mode . (lambda () (set (make-local-variable 'company-backends)
                                      '(;; list of backends
-                                       company-phpactor
-                                       company-files
                                        company-ac-php-backend
                                        company-dabbrev-code
                                        company-capf
+                                       company-phpactor
+                                       company-files
                                        )))))
 
    :bind (:map php-mode-map
