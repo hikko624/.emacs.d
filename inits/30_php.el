@@ -1,5 +1,3 @@
-(use-package phpactor :ensure t)
-
 (use-package php-mode
   :ensure t
   :init

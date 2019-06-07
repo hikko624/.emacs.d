@@ -52,6 +52,7 @@
 (use-package company-quickhelp
   :ensure t)
 
+(use-package phpactor :ensure t)
 (use-package company-phpactor :ensure t)
 (use-package company-php
   :ensure t

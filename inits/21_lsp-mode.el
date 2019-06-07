@@ -4,15 +4,18 @@
   :commands lsp
   :config
   (require 'lsp-clients)
+  (require 'lsp-intelephense)
   :custom
   (lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd")
+  (lsp-php nil)
+  ;; (lsp-clients-php-server-command
+  ;;  `("php" ,(expand-file-name "~/.anyenv/envs/phpenv/shims/php-language-server.php")))
   (lsp-prefer-flymake nil)
   :hook
   (c++-mode . lsp)
   (c-mode . lsp)
   (ruby-mode . lsp)
-  ;; (php-mode . lsp)
-  )
+  (php-mode . lsp))
 
 (use-package lsp-ui
   :commands lsp-ui-mode

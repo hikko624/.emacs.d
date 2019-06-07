@@ -14,3 +14,4 @@ games
 transient/
 custom.el
 .backups/*
+lsp-cache/
