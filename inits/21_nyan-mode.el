@@ -2,5 +2,6 @@
   :ensure t
   :config
   (nyan-mode t)
-  (nyan-toggle-wavy-trail)
-  (nyan-start-animation))
+  ;; (nyan-toggle-wavy-trail)
+  ;; (nyan-start-animation)
+  )
