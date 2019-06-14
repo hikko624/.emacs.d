@@ -57,9 +57,11 @@
   :commands lsp-treemacs-errors-list)
 (use-package dap-mode
   :ensure t
-  :init
-  (dap-mode 1)
-  (dap-ui-mode 1)
   :config
+  (require 'dap-ui)
+  (require 'dap-php)
   (require 'dap-ruby)
-  (require 'dap-php))
+  (require 'dap-lldb)
+  :init
+  (dap-mode t)
+  (dap-ui-mode t))
