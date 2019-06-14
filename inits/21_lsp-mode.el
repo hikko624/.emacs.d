@@ -49,3 +49,17 @@
 ;;   :config
 ;;   (setq ccls-executable "/usr/local/bin/ccls")
 ;;   )
+(use-package helm-lsp
+  :ensure t
+  :commands helm-lsp-workspace-symbol)
+(use-package lsp-treemacs
+  :ensure t
+  :commands lsp-treemacs-errors-list)
+(use-package dap-mode
+  :ensure t
+  :init
+  (dap-mode 1)
+  (dap-ui-mode 1)
+  :config
+  (require 'dap-ruby)
+  (require 'dap-php))

@@ -15,3 +15,5 @@ transient/
 custom.el
 .backups/*
 lsp-cache/
+.extension/
+url/
