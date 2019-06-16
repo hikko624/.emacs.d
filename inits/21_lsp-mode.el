@@ -14,7 +14,8 @@
   (c++-mode . lsp)
   (c-mode . lsp)
   (ruby-mode . lsp)
-  (php-mode . lsp))
+  (php-mode . lsp)
+  (go-mode . lsp))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
@@ -34,14 +35,14 @@
   :bind
   (:map lsp-mode-map
         ("M-?" . lsp-ui-peek-find-references)
-        ("M-." . lsp-ui-peek-find-definitions))
-  )
+        ("M-." . lsp-ui-peek-find-definitions)))
 
 (use-package company-lsp
   :commands company-lsp
-  :init
-  (add-to-list 'company-backend 'company-lsp)
-  )
+  :custom
+  (company-lsp-cache-candidates t)
+  (company-lsp-async t)
+  (company-lsp-enable-recompletion nil))
 
 ;; (use-package ccls
 ;;   :hook ((c++-mode c-mode objc-mode) .
@@ -62,6 +63,7 @@
   (require 'dap-php)
   (require 'dap-ruby)
   (require 'dap-lldb)
+  (require 'dap-go)
   :init
   (dap-mode t)
   (dap-ui-mode t))
