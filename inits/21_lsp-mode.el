@@ -1,6 +1,7 @@
 ;; language server protocolの設定
 ;; 現在設定中[C++, Ruby(solargraph必須)]
 (use-package lsp-mode
+  :ensure t
   :commands lsp
   :config
   (require 'lsp-clients)
@@ -18,6 +19,7 @@
   (go-mode . lsp))
 
 (use-package lsp-ui
+  :ensure t
   :commands lsp-ui-mode
   :custom
   (lsp-ui-doc-enable t)
@@ -38,6 +40,7 @@
         ("M-." . lsp-ui-peek-find-definitions)))
 
 (use-package company-lsp
+  :ensure t
   :commands company-lsp
   :custom
   (company-lsp-cache-candidates t)
