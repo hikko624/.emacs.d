@@ -5,8 +5,7 @@
   ((c-mode . flycheck-mode)
    (c++-mode . flycheck-mode)
    (ruby-mode . flycheck-mode)
-   (php-mode . flycheck-mode)
-   (go-mode . flycheck-mode)))
+   (php-mode . flycheck-mode)))
 
 (use-package flycheck-golangci-lint
   :ensure t
