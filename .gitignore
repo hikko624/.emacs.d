@@ -1,3 +1,4 @@
+tramp
 bookmarks
 .recentf
 auto-save-list/
@@ -16,3 +17,4 @@ custom.el
 .backups/*
 lsp-cache/
 url/
+.dap-breakpoints 
