@@ -5,12 +5,15 @@
   ;; helmのあいまい一致
   (setq helm-buffers-fuzzy-matching t
         helm-recentf-fuzzy-match    t
-        helm-M-x-fuzzy-match        t)
+        helm-M-x-fuzzy-match        t
+        helm-apropos-fuzzy-match    t
+        )
   :bind (
          ("C-x b"   . helm-mini)
          ("C-x C-f" . helm-find-files)
          ("M-x" . helm-M-x)
          ("C-x C-b" . helm-buffers-list)
+         ("C-; h". helm-apropos)
          :map helm-map
          ;; helm-select-actionと交換
          ("<tab>"   . helm-execute-persistent-action)
