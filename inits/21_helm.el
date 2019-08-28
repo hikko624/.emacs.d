@@ -37,3 +37,8 @@
   :ensure t
   :bind (
          ("C-s" . helm-swoop)))
+
+(use-package helm-ls-git
+  :ensure t
+  :bind (
+         ("C-x C-d" . helm-browse-project)))

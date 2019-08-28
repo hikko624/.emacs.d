@@ -1,7 +1,7 @@
 (use-package powerline
   :ensure t
   :config
-  (defconst color1 "#05003d")
+  (defconst color1 "#393939")
   (defconst color2 "#504f66")
   (set-face-attribute 'mode-line nil
                       :foreground "#fff"
