@@ -92,12 +92,11 @@
 (setq custom-file (locate-user-emacs-file "custom.el"))
 
 ;; 左に行数を表示
-(use-package linum
-  :init
-  (global-linum-mode t)
-  :custom
-  (linum-delay t)
-  )
+;; (use-package linum
+;;   :init
+;;   (global-linum-mode t)
+;;   :custom
+;;   (linum-delay t))
 
 (use-package eldoc)
 
