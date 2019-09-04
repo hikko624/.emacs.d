@@ -1,8 +1,10 @@
 (use-package projectile
+  :ensure t
   :init
   (projectile-mode)
   (setq projectile-file-exists-remote-cache-expire nil)
-  :ensure t)
+  (setq projectile-globally-ignored-directories
+        (quote (".idea" ".eunit" ".git" ".hg" ".svn" ".fslckout" ".bzr" "_darcs" ".tox" "build" "target" "vender" "log" ".vscode" "cache" "plugins"))))
 
 (use-package projectile-rails
   :ensure t
