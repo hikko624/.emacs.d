@@ -26,6 +26,11 @@
 (line-number-mode 1)
 (column-number-mode 1)
 
+;; 日本語環境
+(set-language-environment "Japanese")
+(prefer-coding-system 'utf-8)
+(set-default 'buffer-file-coding-system 'utf-8)
+
 ;; ウインドウを分割しても行を折り返さない
 (setq truncate-partial-width-windows nil) ; default 50
 
