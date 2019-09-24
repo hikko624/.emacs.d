@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: prog_template
-# key: prog_template
+# key: prog
 # --
 #include<iostream>
 #include<vector>
