@@ -181,3 +181,4 @@
 ;; (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
 ;; あとでみる
 ;; https://gist.github.com/kubo39/3274584
+(use-package generic-x)
