@@ -95,7 +95,7 @@
 
 ;; custom-set-variablesを外部ファイルに移動
 (setq custom-file (locate-user-emacs-file "custom.el"))
-
+(load custom-file)
 ;; 左に行数を表示
 ;; (use-package linum
 ;;   :init
