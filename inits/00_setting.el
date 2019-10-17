@@ -26,6 +26,11 @@
 (line-number-mode 1)
 (column-number-mode 1)
 
+;; 日本語環境
+(set-language-environment "Japanese")
+(prefer-coding-system 'utf-8)
+(set-default 'buffer-file-coding-system 'utf-8)
+
 ;; ウインドウを分割しても行を折り返さない
 (setq truncate-partial-width-windows nil) ; default 50
 
@@ -90,7 +95,7 @@
 
 ;; custom-set-variablesを外部ファイルに移動
 (setq custom-file (locate-user-emacs-file "custom.el"))
-
+(load custom-file)
 ;; 左に行数を表示
 ;; (use-package linum
 ;;   :init
@@ -176,3 +181,4 @@
 ;; (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
 ;; あとでみる
 ;; https://gist.github.com/kubo39/3274584
+(use-package generic-x)
