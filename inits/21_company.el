@@ -31,27 +31,33 @@
   ;; (set-face-attribute 'company-scrolnlbar-bg nil
   ;;                     :background "gray40")
   :bind (
-         ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
-         ("C-M-i" . company-complete)
-         :map company-active-map
-         ;; C-n, C-pで補完候補を次/前の候補を選択
-         ("C-n" . company-select-next)
-         ("C-p" . company-select-previous)
-         ;; C-sで絞り込む
-         ("C-s" . company-filter-candidates)
-         ;; TABで候補を設定
-         ("<tab>" . company-complete-selection)
-         :map company-search-map
-         ;; C-n, C-pで補完候補を次/前の候補を選択
-         ("C-n" . company-select-next)
-         ("C-p" . company-select-previous)))
+		 ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
+		 ("C-M-i" . company-complete)
+		 :map company-active-map
+		 ;; C-n, C-pで補完候補を次/前の候補を選択
+		 ("C-n" . company-select-next)
+		 ("C-p" . company-select-previous)
+		 ;; C-sで絞り込む
+		 ("C-s" . company-filter-candidates)
+		 ;; TABで候補を設定
+		 ("<tab>" . company-complete-selection)
+		 :map company-search-map
+		 ;; C-n, C-pで補完候補を次/前の候補を選択
+		 ("C-n" . company-select-next)
+		 ("C-p" . company-select-previous)))
 
 (use-package company-box
   :ensure t
   :hook (company-mode . company-box-mode))
 (use-package company-quickhelp
   :ensure t)
-
+(use-package helm-company
+  :ensure t
+  :bind
+  (:map company-mode-map
+		("C-:" . helm-company))
+  (:map company-active-map
+		("C-:" . helm-company)))
 ;; (use-package phpactor :ensure t)
 ;; (use-package company-phpactor :ensure t)
 ;; (use-package company-php
