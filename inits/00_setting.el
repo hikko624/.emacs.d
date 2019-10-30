@@ -37,6 +37,11 @@
 ;; タイトルバー
 ;; (setq frame-title-format invocation-name)
 
+;; テーマ
+(use-package dracula-theme
+  :ensure t)
+(load-theme 'dracula t)
+
 (when window-system
   ;; ツールバーを非表示
   (tool-bar-mode 0)
@@ -49,7 +54,7 @@
                   ;; (top . 22)
                   (internal-border-width . 0)
                   (scroll-bar-width . 14)
-                  (alpha 90 75)
+                  (alpha 95 85)
                   ;; (font . "ricty-13.5")
                   ;; (font . "ricty discord-13.5")
                   )

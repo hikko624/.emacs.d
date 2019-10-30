@@ -15,6 +15,7 @@
   :ensure t
   :init
   (setq projectile-enable-caching t)
+  (setq helm-projectile-fuzzy-match t)
   :bind (
          :map projectile-mode-map
          ;; 参考 https://github.com/bbatsov/projectile/blob/master/doc/configuration.md
@@ -31,7 +32,9 @@
          ("C-c p b" . helm-projectile-switch-to-buffer)
          ("C-c p s g" . helm-projectile-grep)
          ("C-c p s a" . helm-projectile-ack)
-         ("C-c p s s" . helm-projectile-ag))
+         ("C-c p s s" . helm-projectile-ag)
+         ("C-c p s r" . helm-projectile-rg)
+         )
   :config
   (helm-projectile-on)
   )
