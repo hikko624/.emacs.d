@@ -4,8 +4,6 @@
   :init
   ;; 全バッファで有効にする
   (global-company-mode)
-  ;; ヘルプモード
-  (company-quickhelp-mode)
   :config
   ;; 1個目を自動的に補完
   (setq company-auto-expand t)
@@ -49,8 +47,14 @@
 (use-package company-box
   :ensure t
   :hook (company-mode . company-box-mode))
+
 (use-package company-quickhelp
-  :ensure t)
+  :ensure t
+  :init
+  ;; ヘルプモード
+  (company-quickhelp-mode)
+  )
+
 (use-package helm-company
   :ensure t
   :bind
