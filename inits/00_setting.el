@@ -19,6 +19,9 @@
 ;; 論理行で移動
 (setq line-move-visual nil)
 
+;; ファイルの終端は必ず改行を入れる
+(setq require-final-newline t)
+
 ;; 対応する括弧を強調
 (show-paren-mode 1)
 
