@@ -72,3 +72,10 @@
 ;;   (add-to-list 'company-backends 'company-capf)
 ;;   (add-to-list 'company-backends 'company-phpactor)
 ;;   (add-to-list 'company-backends 'company-files))
+
+
+(use-package company-flow
+  :ensure t
+  :init
+  (add-to-list 'company-backends 'company-flow)
+  )
