@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: lcd
-# key: lcd
-# --
-int lcd(int a, int b) {
-  return a * b / gcd(a, b);
-}
