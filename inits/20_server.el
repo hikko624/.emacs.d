@@ -1,6 +1,5 @@
 (use-package server
   :straight t
-  :diminish
   :config
   (unless (server-running-p)
     ;; サーバ起動

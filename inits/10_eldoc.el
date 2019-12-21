@@ -1,0 +1,2 @@
+(use-package eldoc
+  :diminish)

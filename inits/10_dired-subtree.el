@@ -1,6 +1,5 @@
 (use-package dired-subtree
   :straight t
-  :diminish
   :config
   (bind-keys
    :map dired-mode-map

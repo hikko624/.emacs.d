@@ -1,7 +1,6 @@
 ;; 最近開いたファイル
 (use-package recentf
   :straight t
-  :diminish
   :config
   (setq recentf-save-file "~/.emacs.d/.recentf")
   (setq recentf-max-saved-items 1000)
@@ -38,5 +37,5 @@
   (setq uniquify-buffer-name-style 'forward)
   ;; shebangがあるとき実行可能属性を付加
   :hook
-  (after-save . ecutable-make-buffer-file-executable-if-script-p)
+  (after-save . executable-make-buffer-file-executable-if-script-p)
 )
