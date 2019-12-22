@@ -18,5 +18,6 @@ custom.el
 lsp-cache/
 url/
 .dap-breakpoints
-.extension 
+.extension
 straight
+eshell

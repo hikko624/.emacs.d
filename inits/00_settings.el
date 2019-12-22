@@ -41,9 +41,10 @@
  ;; (define-key key-translation-map [(super ?¥)] [(super ?\\)])
 
 ;; 日本語環境
-(set-language-environment "Japanese")
-(prefer-coding-system 'utf-8)
-(set-default 'buffer-file-coding-system 'utf-8)
+;; (set-language-environment "Japanese")
+;; (prefer-coding-system 'utf-8)
+;; (set-default 'buffer-file-coding-system 'utf-8)
+;; (setq locale-coding-system 'utf-8)
 
 (when window-system
   ;; ツールバーを非表示

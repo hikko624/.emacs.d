@@ -44,6 +44,8 @@
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file)
 
+(prefer-coding-system 'utf-8)
+
 ;; init.el外にも設定ファイルを記述できるようにする設定
 (use-package init-loader
   :straight t)
