@@ -44,7 +44,11 @@
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file)
 
-(prefer-coding-system 'utf-8)
+(use-package exec-path-from-shell
+  :straight t
+  :if (memq window-system '(mac ns x))
+  :config
+  (exec-path-from-shell-initialize))
 
 ;; init.el外にも設定ファイルを記述できるようにする設定
 (use-package init-loader
