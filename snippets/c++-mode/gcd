@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: gcd
+# key: gcd
+# --
+int gcd(int x, int y) {
+  return y ? gcd(y, x%y) : x;
+}

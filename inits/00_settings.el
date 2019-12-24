@@ -13,8 +13,17 @@
 ;; 普通のエディタっぽく(?)範囲削除
 (delete-selection-mode 1)
 
+;; スクロール時に画面端までポイントを動かす
+(setq scroll-error-top-bottom t)
+
 ;; デフォルトではインデントにスペースを使う
 (setq-default indent-tabs-mode nil)
+
+;; ファイルの終端は必ず改行を入れる
+(setq require-final-newline t)
+
+;; ウインドウを分割しても行を折り返さない
+(setq truncate-partial-width-windows nil)
 
 ;; 対応する括弧を強調
 (show-paren-mode 1)

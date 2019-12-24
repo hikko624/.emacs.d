@@ -8,6 +8,13 @@
 ;; (keyboard-translate ?\C-h ?\C-?)
 
 ;; VSCodeのように行swap
+(defmacro save-column (&rest body)
+  `(let ((column (current-column)))
+     (unwind-protect
+         (progn ,@body)
+       (move-to-column column))))
+(put 'save-column 'lisp-indent-function 0)
+
 (defun move-line-up ()
   (interactive)
   (save-column
