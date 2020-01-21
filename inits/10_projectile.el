@@ -1,5 +1,5 @@
 (use-package projectile
   :straight t
-  :config
+  :init
   (projectile-mode +1)
   )

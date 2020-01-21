@@ -1,6 +1,6 @@
 (use-package helm-projectile
   :straight t
-  :init
+  :config
   (setq projectile-enable-caching t)
   (setq helm-projectile-fuzzy-match t)
   :bind (
@@ -22,7 +22,7 @@
          ;; ("C-c p s s" . helm-projectile-ag)
          ("C-c p s r" . helm-projectile-rg)
          )
-  :config
+  :init
   (helm-projectile-on))
 
 (use-package helm-rg

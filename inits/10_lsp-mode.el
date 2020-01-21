@@ -3,11 +3,10 @@
   :hook (c++-mode . lsp)
   :commands lsp
   :config
+  (setq lsp-prefer-flymake nil)
   (use-package lsp-clients)
   :custom
   (lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd")
-  :init
-  (setq lsp-prefer-flymake nil)
   )
 
 (use-package lsp-ui

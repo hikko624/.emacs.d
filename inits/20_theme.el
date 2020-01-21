@@ -1,4 +1,4 @@
 (use-package monokai-pro-theme
   :straight t
-  :config
+  :init
   (load-theme 'monokai-pro t))

@@ -25,6 +25,10 @@
 ;; ウインドウを分割しても行を折り返さない
 (setq truncate-partial-width-windows nil)
 
+;; shiftと矢印で画面移動できるようにする
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
 ;; 対応する括弧を強調
 (show-paren-mode 1)
 

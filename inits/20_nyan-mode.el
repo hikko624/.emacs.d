@@ -1,6 +1,6 @@
 (use-package nyan-mode
   :straight t
-  :config
+  :init
   (nyan-mode t)
   ;; (nyan-toggle-wavy-trail)
   ;; (nyan-start-animation)

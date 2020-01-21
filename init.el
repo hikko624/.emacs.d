@@ -23,6 +23,9 @@
   (load bootstrap-file nil 'nomessage))
 
 ;; use-package
+;; use-packageのルール
+;; :init パッケージを起動する前に設定するもの
+;; :config パッケージを起動したあとに設定するもの
 (straight-use-package 'use-package)
 (straight-use-package 'diminish)
 (straight-use-package 'bind-key)

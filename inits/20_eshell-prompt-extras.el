@@ -1,5 +1,5 @@
 (use-package eshell-prompt-extras
   :straight t
-  :init
+  :config
   (setq eshell-prompt-function 'epe-theme-lambda)
 )
