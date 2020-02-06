@@ -1,8 +1,15 @@
 (use-package lsp-mode
   :straight t
-  :hook (c++-mode . lsp)
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  :init
+  (setq lsp-keymap-prefix "s-l")
+  :hook(
+        (c++-mode . lsp)
+        (js2-mode . lsp)
+        (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp
   :config
+  (add-to-list 'lsp-language-id-configuration '(js2-jsx-mode . "javascriptreact"))
   (setq lsp-prefer-flymake nil)
   (use-package lsp-clients)
   :custom
