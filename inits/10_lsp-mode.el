@@ -22,6 +22,8 @@
 
 (use-package company-lsp
   :commands company-lsp
+  :init
+  (add-to-list 'company-backends 'company-lsp)
   :straight t)
 
 (use-package helm-lsp
