@@ -12,8 +12,8 @@
   (add-to-list 'lsp-language-id-configuration '(js2-jsx-mode . "javascriptreact"))
   (setq lsp-prefer-flymake nil)
   (use-package lsp-clients)
-  :custom
-  (lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd")
+  ;; :custom
+  ;; (lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd")
   )
 
 (use-package lsp-ui
@@ -38,3 +38,9 @@
 (use-package dap-mode
   :straight t)
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+
+(use-package ccls
+  :straight t
+  :init
+  (setq cls-executable "/usr/local/bin/ccls")
+  )

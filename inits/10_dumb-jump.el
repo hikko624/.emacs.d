@@ -11,6 +11,4 @@
   ;; (setq dumb-jump-selector 'ivy)
   (setq dumb-jump-selector 'helm)
   (setq dumb-jump-default-project "")
-  (setq dumb-jump-force-searcher 'rg)
-  :init
-  (dumb-jump-mode))
+  (setq dumb-jump-force-searcher 'rg))
