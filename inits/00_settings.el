@@ -29,6 +29,10 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
+;; 対応するカッコが画面外のときはカッコ内も強調
+;; 表示でそれ以外はカッコのみを強調
+(setq show-paren-style 'mixed)
+
 ;; 対応する括弧を強調
 (show-paren-mode 1)
 
