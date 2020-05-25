@@ -17,4 +17,7 @@ custom.el
 .backups/*
 lsp-cache/
 url/
-.dap-breakpoints 
+.dap-breakpoints
+.extension
+straight
+eshell

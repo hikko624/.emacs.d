@@ -1,41 +1,59 @@
-; -*- lexical-binding: t -*-
-;; Mac用
-;; "package.el - Emacs JP" http://emacs-jp.github.io/packages/package-management/package-el.html
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
 (require 'package)
-;; MELPA-stableを追加
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-;; MELPAを追加
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-;; MARMALADEを追加
-;; (add-to-list 'package-archives
-;;            '("marmalade" . "http://marmalade-repo.org/packages/") t)
-;; Orgを追加
-;; (add-to-list 'package-archives
-;;              '("org" . "https://orgmode.org/elpa/") t)
+
+;; Melpaを追加
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
 (package-initialize)
 
-;; update package
-(package-refresh-contents)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-(require 'use-package)
-;; init-loader
-(setq debug-on-error t)
+;; use-package
+;; use-packageのルール
+;; :init パッケージを起動する前に設定するもの
+;; :config パッケージを起動したあとに設定するもの
+(straight-use-package 'use-package)
+(straight-use-package 'diminish)
+(straight-use-package 'bind-key)
+
+;; straight.elを呼び出して自動インストールをする(:ensure tが要らない
+;; (setq straight-use-package-by-default t)
+
+;; foo.txt~ とかのバックアップファイルを作るけど一箇所のファイルに作っておく
+(setq make-backup-files t)
+(setq backup-directory-alist '((".*" . "~/.emacs.d/.backups/")))
+
+;; .#foo.txt# とかの自動保存ファイルを作らない
+(setq auto-save-default nil)
+
+;; .#foo.txt とかのロックファイルを作らない
+(setq create-lockfiles nil)
+
+;; custom-set-variablesを外部ファイルに移動
+(setq custom-file (locate-user-emacs-file "custom.el"))
+(load custom-file)
 
 (use-package exec-path-from-shell
-  :ensure t
+  :straight t
   :if (memq window-system '(mac ns x))
-  :init
-  (exec-path-from-shell-initialize)
   :config
-  ;; (exec-path-from-shell-copy-env "GOPATH")
-  (exec-path-from-shell-copy-env "SDKROOT")
-  )
+  (exec-path-from-shell-initialize))
 
+;; init.el外にも設定ファイルを記述できるようにする設定
 (use-package init-loader
-  :ensure t
-  :config
-  (init-loader-load "~/.emacs.d/inits"))
+  :straight t)
+(init-loader-load "~/.emacs.d/inits")
