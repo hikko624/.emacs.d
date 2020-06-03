@@ -20,7 +20,7 @@
          ("C-c p s g" . helm-projectile-grep)
          ("C-c p s a" . helm-projectile-ack)
          ;; ("C-c p s s" . helm-projectile-ag)
-         ("C-c p s r" . helm-projectile-rg)
+         ("C-c p s s" . helm-projectile-rg)
          )
   :init
   (helm-projectile-on))

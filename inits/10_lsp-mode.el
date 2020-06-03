@@ -6,6 +6,7 @@
   :hook(
         (c++-mode . lsp)
         (js2-mode . lsp)
+        (go-mode . lsp)
         (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp
   :config
@@ -39,8 +40,8 @@
   :straight t)
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
-(use-package ccls
-  :straight t
-  :init
-  (setq cls-executable "/usr/local/bin/ccls")
-  )
+;; (use-package ccls
+;;   :straight t
+;;   :init
+;;   (setq cls-executable "/usr/local/bin/ccls")
+;;   )
