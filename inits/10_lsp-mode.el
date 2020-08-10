@@ -7,6 +7,8 @@
         (c++-mode . lsp)
         (js2-mode . lsp)
         (go-mode . lsp)
+        ;; (ruby-mode . lsp)
+        (enh-ruby-mode . lsp)
         (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp
   :config

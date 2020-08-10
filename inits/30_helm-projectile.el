@@ -19,11 +19,13 @@
          ("C-c p b" . helm-projectile-switch-to-buffer)
          ("C-c p s g" . helm-projectile-grep)
          ("C-c p s a" . helm-projectile-ack)
-         ;; ("C-c p s s" . helm-projectile-ag)
-         ("C-c p s s" . helm-projectile-rg)
+         ("C-c p s s" . helm-projectile-ag)
+         ;; ("C-c p s s" . helm-projectile-rg)
          )
   :init
   (helm-projectile-on))
 
 (use-package helm-rg
+  :straight t)
+(use-package helm-ag
   :straight t)
