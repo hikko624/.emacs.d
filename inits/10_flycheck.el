@@ -2,4 +2,7 @@
 (use-package flycheck
   :straight t
   :hook
-  ((c++-mode . flycheck-mode)))
+  (yaml-mode . flycheck-mode)
+  ;; ((c++-mode . flycheck-mode))
+  ;; (ruby-mode . fly-check-mode)
+  )
