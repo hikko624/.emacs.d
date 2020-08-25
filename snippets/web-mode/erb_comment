@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: erb_commment
+# key: ec
+# --
+<%# $0 %>
