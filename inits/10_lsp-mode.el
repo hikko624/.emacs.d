@@ -5,19 +5,17 @@
   ;; (setq lsp-keymap-prefix "s-l")
   :hook(
         (c++-mode . lsp)
-        (js2-mode . lsp)
+        (js-mode . lsp)
         (go-mode . lsp)
         (ruby-mode . lsp)
+        (php-mode . lsp)
         (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp
   :config
   (setq lsp-completion-provider :capf)
-  (add-to-list 'lsp-language-id-configuration '(js2-jsx-mode . "javascriptreact"))
   (setq lsp-prefer-flymake nil)
   (use-package lsp-clangd)
   (use-package lsp-solargraph)
-  ;; :custom
-  ;; (lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd")
   )
 
 (use-package lsp-ui
@@ -45,6 +43,7 @@
 
 ;; (use-package ccls
 ;;   :straight t
-;;   :init
-;;   (setq cls-executable "/usr/local/bin/ccls")
-;;   )
+;;   :custom
+;;   (ccls-executable "/usr/local/bin/ccls")
+;;   :hook ((c++-mode) .
+;;          (lambda () (require 'ccls) (lsp))))
