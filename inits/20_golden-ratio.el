@@ -11,5 +11,5 @@
   ;; ウィンドウの大きさを変更しないバッファ名
   (setq golden-ratio-exclude-buffer-names '(" *Org tags*" " *Org todo*"))
   ;; ウィンドウの大きさを変更しないバッファ名の正規表現
-  (setq golden-ratio-exclude-buffer-regexp '("\\*helm"))
+  (setq golden-ratio-exclude-buffer-regexp '("\\*helm" "magit*\\"))
   )
