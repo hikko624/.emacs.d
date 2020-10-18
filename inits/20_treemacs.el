@@ -69,24 +69,24 @@
         ("C-x t C-t" . treemacs-find-file)
         ("C-x t M-t" . treemacs-find-tag)))
 
-(use-package treemacs-evil
-  :after treemacs evil
-  :straight t)
+;; (use-package treemacs-evil
+;;   :after treemacs evil
+;;   :straight t)
 
-(use-package treemacs-projectile
-  :after treemacs projectile
-  :straight t)
+;; (use-package treemacs-projectile
+;;   :after treemacs projectile
+;;   :straight t)
 
-(use-package treemacs-icons-dired
-  :after treemacs dired
-  :straight t
-  :config (treemacs-icons-dired-mode))
+;; (use-package treemacs-icons-dired
+;;   :after treemacs dired
+;;   :straight t
+;;   :config (treemacs-icons-dired-mode))
 
-(use-package treemacs-magit
-  :after treemacs magit
-  :straight t)
+;; (use-package treemacs-magit
+;;   :after treemacs magit
+;;   :straight t)
 
-(use-package treemacs-persp ;;treemacs-persective if you use perspective.el vs. persp-mode
-  :after treemacs persp-mode ;;or perspective vs. persp-mode
-  :straight t
-  :config (treemacs-set-scope-type 'Perspectives))
+;; (use-package treemacs-persp ;;treemacs-persective if you use perspective.el vs. persp-mode
+;;   :after treemacs persp-mode ;;or perspective vs. persp-mode
+;;   :straight t
+;;   :config (treemacs-set-scope-type 'Perspectives))
