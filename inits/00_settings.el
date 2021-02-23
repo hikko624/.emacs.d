@@ -63,6 +63,10 @@
 ;; (set-default 'buffer-file-coding-system 'utf-8)
 ;; (setq locale-coding-system 'utf-8)
 
+;; GCの設定
+(setq garbage-collection-messages t)
+(setq gc-cons-threshold (* gc-cons-threshold 20))
+
 (when window-system
   ;; ツールバーを非表示
   (tool-bar-mode 0)
