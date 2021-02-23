@@ -13,14 +13,14 @@
   :commands lsp
   :config
   (setq lsp-completion-provider :capf)
-  (setq lsp-prefer-flymake nil)
   (use-package lsp-clangd)
   (use-package lsp-solargraph)
   )
 
 (use-package lsp-ui
   :commands lsp-ui-mode
-  :straight t)
+  :straight t
+  )
 
 ;; (use-package company-lsp
 ;;   :commands company-lsp
@@ -40,10 +40,3 @@
 (use-package dap-mode
   :straight t)
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
-
-;; (use-package ccls
-;;   :straight t
-;;   :custom
-;;   (ccls-executable "/usr/local/bin/ccls")
-;;   :hook ((c++-mode) .
-;;          (lambda () (require 'ccls) (lsp))))
