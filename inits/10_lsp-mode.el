@@ -13,6 +13,13 @@
   :commands lsp
   :config
   (setq lsp-completion-provider :capf)
+  ;; GCの設定
+  (setq garbage-collection-messages t)
+  (setq gc-cons-threshold 100000000)
+
+  ;; プロセスから読み込むデータの量を増やす
+  (setq read-process-output-max (* 1024 1024))
+
   (use-package lsp-clangd)
   (use-package lsp-solargraph)
   )
