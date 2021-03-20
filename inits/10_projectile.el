@@ -1,5 +1,6 @@
 (use-package projectile
-  :straight t
+  :ensure t
+  :diminish
   :init
   (projectile-mode +1)
   )

@@ -1,3 +1,3 @@
 (use-package org-journal
-  :straight t
+  :ensure t
   )

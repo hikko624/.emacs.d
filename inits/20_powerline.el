@@ -1,5 +1,5 @@
 (use-package powerline
-  :straight t
+  :ensure t
   :config
   ;; (defconst color1 "#393939")
   ;; (defconst color2 "#504f66")

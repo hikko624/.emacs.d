@@ -1,5 +1,5 @@
 (use-package company
-  :straight t
+  :ensure t
   :diminish
   :init
   ;; 全バッファで有効にする
@@ -11,7 +11,7 @@
   (setq company-selection-wrap-around t)
   :bind (
          ;; 各種メジャーモードでも C-M-iで company-modeの補完を使う
-         ("C-M-i" . company-complete)
+         ;; ("C-M-i" . company-complete)
          :map company-active-map
          ;; C-n, C-pで補完候補を次/前の候補を選択
          ("C-n" . company-select-next)

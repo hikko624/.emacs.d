@@ -1,5 +1,5 @@
 (use-package dumb-jump
-  :straight t
+  :ensure t
   :diminish
   :bind (("M-g o" . dumb-jump-go-other-window)
          ("M-g j" . dumb-jump-go)

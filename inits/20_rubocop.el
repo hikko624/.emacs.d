@@ -1,4 +1,4 @@
 (use-package rubocop
-  :straight t
+  :ensure t
   :hook
   (ruby-mode . rubocop-mode))

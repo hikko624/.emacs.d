@@ -1,5 +1,5 @@
 (use-package rainbow-delimiters
-  :straight t
+  :ensure t
   :hook
   (emacs-lisp-mode . rainbow-delimiters-mode)
   )

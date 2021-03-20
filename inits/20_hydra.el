@@ -1,7 +1,11 @@
-(use-package hydra)
-(use-package hydra-examples)
-(use-package hydra-ox)
-(use-package lv)
+(use-package hydra
+  :ensure t)
+;; (use-package hydra-examples
+;;   :ensure t)
+;; (use-package hydra-ox
+;;   :ensure t)
+(use-package lv
+  :ensure t)
 (defhydra hydra-splitter ()
   "splitter"
   ("h" hydra-move-splitter-left)

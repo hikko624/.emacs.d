@@ -1,5 +1,5 @@
 (use-package avy
-  :straight t
+  :ensure t
   :bind
   (("C-c C-a r" . avy-resume)
    ("C-c C-a l" . avy-goto-line))

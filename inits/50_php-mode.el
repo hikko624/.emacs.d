@@ -1,4 +1,4 @@
 (use-package php-mode
-  :straight t
+  :ensure t
   :diminish
   )

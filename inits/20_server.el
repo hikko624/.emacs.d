@@ -1,5 +1,5 @@
 (use-package server
-  :straight t
+  ;; :ensure t
   :config
   (unless (server-running-p)
     ;; サーバ起動

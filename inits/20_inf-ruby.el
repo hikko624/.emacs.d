@@ -1,5 +1,5 @@
 (use-package inf-ruby
-  :straight t
+  :ensure t
   :config
   (setq inf-ruby-default-implementation "pry")
   (setq inf-ruby-eval-binding "Pry.toplevel_binding")

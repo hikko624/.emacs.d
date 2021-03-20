@@ -1,6 +1,6 @@
-(use-package company-quickhelp
-  :straight t
-  :init
-  ;; ヘルプモード
-  (company-quickhelp-mode)
-  )
+;; (use-package company-quickhelp
+;;   :ensure t
+;;   :init
+;;   ;; ヘルプモード
+;;   (company-quickhelp-mode)
+;;   )

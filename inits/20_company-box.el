@@ -1,4 +1,4 @@
-(use-package company-box
-  :straight t
-  :diminish
-  :hook (company-mode . company-box-mode))
+;; (use-package company-box
+;;   :ensure t
+;;   :diminish
+;;   :hook (company-mode . company-box-mode))

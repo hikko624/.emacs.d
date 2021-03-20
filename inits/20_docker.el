@@ -1,3 +1,3 @@
 (use-package docker
-  :straight t
+  :ensure t
   :bind ("C-c d" . docker))

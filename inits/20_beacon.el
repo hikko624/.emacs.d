@@ -1,5 +1,5 @@
 (use-package beacon
-  :straight t
+  :ensure t
   :custom
   (beacon-color "yellow")
   :config

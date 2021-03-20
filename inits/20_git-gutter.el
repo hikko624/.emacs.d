@@ -1,5 +1,5 @@
 (use-package git-gutter
-  :straight t
+  :ensure t
   :diminish
   :bind
   (

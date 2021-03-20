@@ -1,4 +1,4 @@
 (use-package ruby-end
-  :straight t
+  :ensure t
   :diminish
   )
