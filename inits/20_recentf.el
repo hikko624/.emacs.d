@@ -1,6 +1,6 @@
 ;; 最近開いたファイル
 (use-package recentf
-  :straight t
+  ;; :ensure t
   :config
   (setq recentf-save-file "~/.emacs.d/.recentf")
   (setq recentf-max-saved-items 1000)

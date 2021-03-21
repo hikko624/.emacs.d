@@ -1,2 +1,2 @@
 (use-package json-mode
-  :straight t)
+  :ensure t)

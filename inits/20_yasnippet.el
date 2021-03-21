@@ -1,6 +1,6 @@
 ;; yasnippetの設定
 (use-package yasnippet
-  :straight t
+  :ensure t
   :diminish yas-minor-mode
   :bind (
          :map yas-minor-mode-map
@@ -14,5 +14,5 @@
   ;; yas起動
   (yas-global-mode 1))
 (use-package yasnippet-snippets
-  :straight t
+  :ensure t
   :diminish)

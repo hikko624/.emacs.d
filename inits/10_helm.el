@@ -1,5 +1,5 @@
 (use-package helm
-  :straight t
+  :ensure t
   :diminish
   ;; https://github.com/emacs-helm/helm/wiki/Fuzzy-matching
   :bind (

@@ -1,2 +1,2 @@
 (use-package all-the-icons
-  :straight t)
+  :ensure t)

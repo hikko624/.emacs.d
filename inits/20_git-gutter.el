@@ -1,5 +1,5 @@
 (use-package git-gutter
-  :straight t
+  :ensure t
   :diminish
   :bind
   (
@@ -11,5 +11,5 @@
    ("C-x v r" . git-gutter:revert-hunk)
    ("C-x v SPC" . #'git-gutter:mark-hunk)
    )
-  :init
+  :config
   (global-git-gutter-mode t))

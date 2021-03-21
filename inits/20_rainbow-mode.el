@@ -1,5 +1,5 @@
 (use-package rainbow-mode
-  :straight t
+  :ensure t
   :diminish
   :hook
   (css-mode . rainbow-mode)

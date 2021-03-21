@@ -2,7 +2,7 @@
 ;;	　
 ;; "\\(\\( \\|ࢠ\\|ठ\\|ภ\\|༠\\)+\\)"
 (use-package whitespace
-  :straight t
+  ;; :ensure t
   :diminish global-whitespace-mode
   :config
   (global-whitespace-mode 1)
@@ -31,5 +31,4 @@
           (space-mark ?\uFEFF [?\u2423])
           ;; WARNING: タブ幅が1文字分しかない状況ではタブ位置がずれる問題がある
           (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])))
-
   )

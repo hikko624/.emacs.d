@@ -1,5 +1,5 @@
 (use-package yaml-mode
-  :straight t
+  :ensure t
   :diminish
   :init
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)

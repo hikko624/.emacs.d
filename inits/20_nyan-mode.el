@@ -1,5 +1,5 @@
 (use-package nyan-mode
-  :straight t
+  :ensure t
   :init
   (nyan-mode t)
   ;; (nyan-toggle-wavy-trail)

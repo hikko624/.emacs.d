@@ -48,7 +48,11 @@
 
 ;; command キーをメタキーとして使い、 option キーは修飾キーとして扱わない
 (when (eq window-system 'ns)
-  (setq mac-option-modifier nil)
+  (setq mac-option-modifier 'super)
+  (setq mac-command-modifier 'meta))
+
+(when (eq system-type 'darwin)
+  (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta))
 
 (when (eq system-type 'darwin)

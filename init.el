@@ -12,26 +12,46 @@
 
 ;; (package-initialize)
 
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
+;; (defvar bootstrap-version)
+;; (let ((bootstrap-file
+;;        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+;;       (bootstrap-version 5))
+;;   (unless (file-exists-p bootstrap-file)
+;;     (with-current-buffer
+;;         (url-retrieve-synchronously
+;;          "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+;;          'silent 'inhibit-cookies)
+;;       (goto-char (point-max))
+;;       (eval-print-last-sexp)))
+;;   (load bootstrap-file nil 'nomessage))
 
 ;; use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-when-compile
+  (require 'use-package))
+
+;; if you use :diminish
+(unless (package-installed-p 'diminish)
+  (package-refresh-contents)
+  (package-install 'diminish))
+(eval-when-compile
+  (require 'diminish))
+
+;; if you use any :bind variant
+(unless (package-installed-p 'bind-key)
+  (package-refresh-contents)
+  (package-install 'bind-key))
+(eval-when-compile
+  (require 'bind-key))
+
 ;; use-packageのルール
 ;; :init パッケージを起動する前に設定するもの
 ;; :config パッケージを起動したあとに設定するもの
-(straight-use-package 'use-package)
-(straight-use-package 'diminish)
-(straight-use-package 'bind-key)
+;; (straight-use-package 'use-package)
+;; (straight-use-package 'diminish)
+;; (straight-use-package 'bind-key)
 
 ;; straight.elを呼び出して自動インストールをする(:ensure tが要らない
 ;; (setq straight-use-package-by-default t)
@@ -51,12 +71,12 @@
 (load custom-file)
 
 (use-package exec-path-from-shell
-  :straight t
+  :ensure t
   :if (memq window-system '(mac ns x))
   :config
   (exec-path-from-shell-initialize))
 
 ;; init.el外にも設定ファイルを記述できるようにする設定
 (use-package init-loader
-  :straight t)
+  :ensure t)
 (init-loader-load "~/.emacs.d/inits")

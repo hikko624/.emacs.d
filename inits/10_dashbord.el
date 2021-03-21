@@ -1,5 +1,5 @@
 (use-package dashboard
-  :straight t
+  :ensure t
   :init
   (setq dashboard-center-content t)
   (setq dashboard-items '((recents  . 5)

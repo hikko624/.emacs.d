@@ -1,5 +1,5 @@
 (use-package helm-projectile
-  :straight t
+  :ensure t
   :config
   (setq projectile-enable-caching t)
   (setq helm-projectile-fuzzy-match t)
@@ -26,6 +26,6 @@
   (helm-projectile-on))
 
 (use-package helm-rg
-  :straight t)
+  :ensure t)
 (use-package helm-ag
-  :straight t)
+  :ensure t)

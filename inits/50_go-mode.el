@@ -1,5 +1,5 @@
 (use-package go-mode
-  :straight t
+  :ensure t
   :hook
   (go-mode . (lambda ()
                (setq tab-width 4)))

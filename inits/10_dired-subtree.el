@@ -1,5 +1,5 @@
 (use-package dired-subtree
-  :straight t
+  :ensure t
   :bind (
          :map dired-mode-map
          ;; iを置き換え(展開する)
