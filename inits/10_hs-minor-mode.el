@@ -1,5 +1,5 @@
 (use-package hs-minor-mode
-  :diminish hs-minor-mode
+  :diminish
   :hook
   (c++-mode . hs-minor-mode)
   )

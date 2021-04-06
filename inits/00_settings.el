@@ -83,6 +83,8 @@
                   (alpha 100 95)
                   ;; (font . "ricty-13.5")
                   ;; (font . "ricty discord-13.5")
+                  ;; (font. "Ricty Diminished Discord-14")
+                  ;; (font . "Cica-14")
                   )
                 default-frame-alist)))
 
