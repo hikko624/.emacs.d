@@ -122,6 +122,13 @@
       (append '(("(\\|)" . paren-face))
               lisp-font-lock-keywords-2))
 
+;; カレントディレクトリが変になったときに戻すコマンド
+(defun my/reset-default-directory-by-buffer-file-name ()
+  "Set default-directory by `buffer-file-name'."
+  (interactive)
+  (require 'f)
+  (when buffer-file-name
+    (setq default-directory (f-dirname buffer-file-name))))
 
 ;; 括弧の自動補完
 (electric-pair-mode 1)

@@ -76,6 +76,9 @@
   :config
   (exec-path-from-shell-initialize))
 
+(use-package use-package-ensure-system-package
+  :ensure t)
+
 ;; init.el外にも設定ファイルを記述できるようにする設定
 (use-package init-loader
   :ensure t)
