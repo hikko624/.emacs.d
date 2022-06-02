@@ -22,3 +22,6 @@ url/
 straight
 eshell
 ac-comphist.dat
+undo-tree
+eln-cache/
+elfeed

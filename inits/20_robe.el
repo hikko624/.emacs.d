@@ -4,7 +4,7 @@
   :hook
   (ruby-mode . robe-mode)
   ;; for auto-complete
-  ;; (robe-mode . ac-robe-setup)
+ ;;  (robe-mode . ac-robe-setup)
   ;; for company
   :init
   (add-to-list 'company-backends 'company-robe)

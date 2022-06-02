@@ -2,7 +2,11 @@
   :ensure t
   :hook
   (go-mode . (lambda ()
-               (setq tab-width 4)))
+               (setq tab-width 4)
+               (lsp-go-install-save-hooks))
+           )
   :init
-  (add-hook 'before-save-hook 'gofmt-before-save)
+  (defun lsp-go-install-save-hooks ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
   )

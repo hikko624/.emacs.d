@@ -5,10 +5,12 @@
   ;; (setq lsp-keymap-prefix "s-l")
   :hook(
         (c++-mode . lsp)
-        ;; (js-mode . lsp)
+        (js-mode . lsp)
         (go-mode . lsp)
         ;; (ruby-mode . lsp)
         (php-mode . lsp)
+        (haskell-mode . lsp)
+        (haskell-literate-mode . lsp)
         (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp
   :config
@@ -21,12 +23,14 @@
   (setq read-process-output-max (* 1024 1024))
 
   (use-package lsp-clangd)
-  (use-package lsp-solargraph)
-  )
+  (use-package lsp-haskell
+    :ensure t)
+  (use-package lsp-solargraph))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
   :ensure t
+  :hook (lsp-mode . lsp-ui-mode)
   )
 
 ;; (use-package company-lsp
