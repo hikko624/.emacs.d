@@ -4,7 +4,7 @@
   :init
   (global-undo-tree-mode)
   :custom (
-           ;; (undo-tree-auto-save-history t)
-           ;; (undo-tree-load-history t)
+           (undo-tree-auto-save-history nil)
+           (undo-tree-load-history nil)
           (undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo-tree"))))
 )

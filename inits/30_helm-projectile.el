@@ -4,7 +4,7 @@
   (setq projectile-enable-caching t)
   (setq helm-projectile-fuzzy-match t)
   :bind (
-         ;; :map projectile-mode-map
+         :map projectile-mode-map
          ;; 参考 https://github.com/bbatsov/projectile/blob/master/doc/configuration.md
          ("C-c p h" . helm-projectile)
          ("C-c p p" . helm-projectile-switch-project)
@@ -27,5 +27,5 @@
 
 (use-package helm-rg
   :ensure t)
-(use-package helm-ag
-  :ensure t)
+;; (use-package helm-ag
+;;   :ensure t)

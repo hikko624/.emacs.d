@@ -7,7 +7,7 @@
         (c++-mode . lsp)
         (js-mode . lsp)
         (go-mode . lsp)
-        ;; (ruby-mode . lsp)
+        (ruby-mode . lsp)
         (php-mode . lsp)
         (haskell-mode . lsp)
         (haskell-literate-mode . lsp)
@@ -25,7 +25,21 @@
   (use-package lsp-clangd)
   (use-package lsp-haskell
     :ensure t)
-  (use-package lsp-solargraph))
+  (use-package lsp-solargraph)
+  ;; :custom
+  ;; (with-eval-after-load "lsp-solargraph"
+  ;; (lsp-register-client
+  ;;   (make-lsp-client :new-connection (lsp-tramp-connection '("solargraph" "stdio"))
+  ;;     :major-modes '(ruby-mode enh-ruby-mode)
+  ;;     :priority 1
+  ;;     :remote? t
+  ;;     :multi-root t
+  ;;     :server-id 'ruby-ls-remote
+  ;;     :initialized-fn (lambda (workspace)
+  ;;                       (with-lsp-workspace workspace
+  ;;                         (lsp--set-configuration
+  ;;                           (lsp-configuration-section "solargraph")))))))
+  )
 
 (use-package lsp-ui
   :commands lsp-ui-mode

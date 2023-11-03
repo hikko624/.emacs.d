@@ -1,4 +1,4 @@
-(use-package ruby-end
-  :ensure t
-  :diminish
-  )
+;; (use-package ruby-end
+;;  :ensure t
+;;  :diminish
+;;  )

@@ -1,4 +1,4 @@
-(use-package php-mode
-  :ensure t
-  :diminish
-  )
+;; (use-package php-mode
+;;  :ensure t
+;;  :diminish
+;;  )

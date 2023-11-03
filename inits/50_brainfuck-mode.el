@@ -1,2 +1,2 @@
-(use-package brainfuck-mode
-  :ensure t)
+;; (use-package brainfuck-mode
+;;   :ensure t)

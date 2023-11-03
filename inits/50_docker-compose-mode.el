@@ -1,2 +1,2 @@
-(use-package docker-compose-mode
-  :ensure t)
+;; (use-package docker-compose-mode
+;;  :ensure t)

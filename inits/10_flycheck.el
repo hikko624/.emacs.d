@@ -3,4 +3,5 @@
   :hook
   (c++-mode . flycheck-mode)
   (ruby-mode . flycheck-mode)
+  (emacs-lisp-mode . flycheck-mode)
   )
